@@ -1,0 +1,52 @@
+.user_home
+  .new_help_form
+    .notice
+      有困难，要帮忙？勇敢的写吧！
+    .form_panel#newAssistance
+      %textarea.form_text{ :name => 'content' }
+      .bottom_tools
+        %a.location{ :href => '#' }
+          %i.icons.icons_c_map
+          地点
+        %a.person{ :href => '#' }
+          %i.icons.icons_c_person
+          指定求助人
+        %a.person{ :href => '#' }
+          %i.icons.icons_img
+          上传图片                  
+      %a.button.green.submit{ :href => 'javascript:;' } 发布求助
+
+  .user_zl_list
+    .zl_nav
+      %a{ :href => home_path, :class => params[:type] == 'followed' ? 'current' : '' }
+        我的关注    
+      %a{ :href => url_for(:type => 'assistances'), :class => params[:type] == 'assistances' ? 'current' : '' }
+        我的求助
+      %a{ :href => '#' }
+        我的帮助
+      %a{ :href => '#' }
+        求助我的        
+    .zl_list
+      - @assistances.each do |assistance|
+        .zl_li
+          .detail
+            .avatar
+              %a
+                = image_tag assistance.user.avatar_url(:m), :size => '80x80'
+              .action
+                / %a{ :href => '#' }
+                /   %i.icons.icons_mail
+                /   私信她   
+            .content
+              %a.user_name= "#{assistance.user.login}:"
+              = assistance.content
+          .status
+            %span 
+              于 3 天前
+            %a{ :href => assistance_path(assistance.id) }
+              %i.icons.icons_person
+              = "帮忙的(#{assistance.helpers_count})"
+            %a{ :href => assistance_path(assistance.id) }
+              %i.icons.icons_comt
+              评论(0)      
+

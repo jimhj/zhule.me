@@ -1,0 +1,132 @@
+@import 'base';
+$g-border: 1px solid #CCC;
+
+html { @include body_bg; }
+
+.main-container {
+  @include zoom;
+  margin: 30px auto 10px auto;
+  width: 75%;
+  height: auto;
+  min-height: 700px;
+  .container {
+    .left-container {
+      float: left;
+      width: 64%;
+      overflow: hidden;
+    }
+
+    .right-container {
+      float: right;
+      width: 34%;
+      overflow: hidden;
+
+      .achievement {
+        @include font(14px);
+        @include background(5px);
+        padding: 5px 5px;
+        p { padding: 8px 5px; cursor: default; }
+        p:hover { @include background(5px, #FFF); } 
+      }    
+    }
+  }
+}
+
+/* User home */
+
+.new_help_form {
+  @include background(5px);
+  @include font(12px);
+  padding: 5px 16px 12px 16px;
+  .notice { @include font(14px, #666666); margin: 5px 0px 10px; }
+  .form_panel {
+    @include zoom;
+    .bottom_tools { float: left; margin-top: 10px; a { @include font(12px); margin-right: 10px; } } 
+    textarea { width: 98%; }
+    a.button { float: right; margin-top: 10px; }
+  }
+}
+
+/* User Dialogs */
+.user_dialogs {
+  @include background(5px);
+  @include font(12px);
+  padding: 5px 5px;
+  a { @include font(12px, #3E8BD9); }
+  .dialog {
+    @include zoom;
+    width: 96%;
+    padding: 7px 5px;
+    border-bottom: $g-border;
+    // margin-top: 3px;
+    .user {
+      float: left;
+      width: 10%;
+      .avatar {}
+    }
+    .info { 
+      float: left;
+      width: 88%;
+      margin-left: 10px;
+      .dialog_content { line-height: 22px; }
+      .actions { margin-top: 5px; a { margin-left: 5px; } }
+    }
+  }
+  .dialog:hover { @include background(0px, #FFF); };
+}
+
+/* User Dialog Show */
+
+.user_dialog_show {
+  .new_message_form {
+    @include background(5px);
+    @include font(12px);
+    @include zoom;
+    padding: 10px 10px;
+    textarea { width: 96%; margin-left: 8px; }
+    .tools { float: left; }
+    a.button { float: right; margin-top: 8px; margin-right: 7px; } 
+  }
+
+  .message_list {
+    @include background(5px);
+    @include font(12px);
+    padding: 5px 5px;
+    margin-top: 10px;
+    .message {
+      padding: 5px 5px;
+      .mode { 
+        @include zoom;
+        // .avatar { img { vertical-align: bottom; } }
+        margin: 5px 0px;
+        .timeline { text-align: center; padding-bottom: 3px; }
+        .content { 
+          line-height: 18px; padding: 2px 5px; 
+          border: $g-border;
+          // width: 60%;
+          max-width: 60%;
+          p { word-wrap: break-word; @include font(12px, #333333); }
+        }
+      }
+      .mode.left_mode {
+        .avatar { float: left; }
+        .content { 
+          float: left; margin-left: 5px; @include background(3px, #FFFCE9);
+       }
+      }
+      .mode.right_mode {
+        .avatar { float: right; }
+        .content { 
+          float: right; margin-right: 5px; @include background(3px, #E6F2FA); 
+        }        
+      }
+    } 
+  }
+} 
+
+
+
+.footer {
+  width: 75%;
+}
+

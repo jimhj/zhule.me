@@ -1,0 +1,65 @@
+.user_profile
+  .avatar
+    = image_tag @user.avatar_url(:l)
+  .user_info
+    .user_name
+      %span= @user.login
+    .region
+      %span= @user.address.blank? ? '未填写' : @user.address
+    .hearts{ :title => '爱心指数' }
+      - 4.times do
+        %i.icons.icons_heart
+    .pages
+      %p
+        签名：
+        %span= @user.tagline
+      %p
+        主页：
+        %a{ :href => '#' } http://www.123.com
+    .achievement
+      %a{ :href => '#' }
+        帮助过
+        %em.num 10
+      %a{ :href => '#' }
+        求助过
+        %em.num.green 10
+      %a{ :href => '#' }
+        未解决
+        %em.num.red 112       
+  .actions
+    - if current_user != @user
+      %a.button.followBtn{ :href => 'javascript:;', :class => current_user.followed?(@user.id) ? 'gray' : '', 'data-user_id' => @user.id } + 加关注
+
+.user_zl_list
+  .zl_nav
+    %a.current{ :href => '#' }
+      她求助过的
+    %a{ :href => '#' }
+      她帮助过的
+  .zl_list
+    - 3.times do
+      .zl_li
+        .detail
+          .avatar
+            = image_tag 'demo.jpg', :size => '80x80'
+            .action
+              %a{ :href => '#' }
+                %i.icons.icons_mail
+                私信她   
+          .content
+            %a.user_name 老黄：
+            找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗,愿意呀！
+            找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗,愿意呀！
+            找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗,愿意呀！
+            个人帮我看狗狗, 谁个人帮我看狗狗, 谁个人帮我看狗狗, 谁个人帮我看狗狗, 谁
+        .status
+          %span 
+            于 3 天前
+          %a{ :href => '#' }
+            %i.icons.icons_person
+            帮她(17)
+          %a{ :href => '#' }
+            %i.icons.icons_comt
+            评论(20)
+                   
+  .pagination

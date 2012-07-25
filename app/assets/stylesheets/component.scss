@@ -1,0 +1,124 @@
+@mixin button {
+  background: none repeat scroll 0 0 #1E95E5;
+  border: 1px solid #147DCD;
+  border-radius: 5px 5px 5px 5px;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.05), 0 1px 0 rgba(255, 255, 255, 0.15) inset;
+  // color: rgba(255, 255, 255, 0.8);
+  color: #FFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 6px 15px;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.2);
+  vertical-align: middle;   
+}
+
+// Button
+a.button, input.button {
+  @include button;
+}
+
+a.button.green, input.button.green {
+  background: none repeat scroll 0 0 green;
+  border: 1px solid green;
+}
+
+a.big_button {
+  @include button;
+  padding: 10px 60px;
+  background: none repeat scroll 0 0 green;
+  border: 1px solid green;
+}
+
+a.button.gray, input.button.gray {
+  background: none repeat scroll 0 0 #F5F3EF;
+  border: 1px solid #CCC;
+  color: #999;
+}
+
+// Status Tag
+i.status, i.status.green {
+  // display: inline-block;
+  padding: 0px 5px;
+  background: none repeat scroll 0 0 green;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 30px 30px;
+}
+
+i.status.red {
+  background: none repeat scroll 0 0 #FF0000;
+}
+
+// Title
+
+.title {
+  padding: 4px 4px 6px 4px;
+  color: #999;
+  font-size: 14px;
+  border-bottom: 1px dotted #CCC;
+  a.action { float: right; font-size: 12px; color: #3E8BD9; }  
+}
+
+// Number
+em.num {
+  background: none repeat scroll 0 0 #1E95E5;
+  padding: 1px 1px;
+  // display: inline-block;
+  color: #FFF;
+  border-radius: 30px 30px;
+  // font-size: 18px;
+}
+
+em.num.green {
+  background: none repeat scroll 0 0 green;
+}
+
+em.num.red {
+  background: none repeat scroll 0 0 #FF0000;
+}
+
+// Text Input
+input.text {
+  background: none repeat scroll 0 0 #E8F4FC;
+  border: 1px solid #CCC;
+  border-radius: 5px 5px 5px 5px;
+  // box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3), 0 1px 3px rgba(0, 0, 0, 0.3) inset;
+  color: #888888;
+  // cursor: text;
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  // margin: 0 0 18px;
+  padding: 10px 5px;
+  width: 250px;    
+}
+
+input.text.disabled {
+  background: none repeat scroll 0 0 #CCC;
+  border: 1px solid #999;
+}
+
+textarea.form_text {
+  border: 1px solid #CCC;
+
+  color: #888888;
+  cursor: text;
+  display: block;
+  font-size: 14px;
+  line-height: 18px;
+  padding: 3px 3px;
+  border-radius: 3px 3px;
+  height: 60px;     
+}
+
+// text-align
+.alignmid {
+  padding: 10px 0px;
+  text-align: center ;
+}
+
+// Navigation

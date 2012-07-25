@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title 助乐 - 帮助别人，快乐自己！
+    = stylesheet_link_tag 'application', 'setting'
+    = yield :header_css
+    = javascript_include_tag 'app', 'setting'
+    = yield :header_js
+    = csrf_meta_tags
+    %meta{ :name => 'keywords', :content => '帮助别人，快乐自己' }
+    %meta{ :name => 'description', :content => '帮助别人，快乐自己' }
+    /Le HTML5 shim, for IE6-8 support of HTML5 elements
+    /[if IE 9]
+      %script{ :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
+  %body
+    = render 'layouts/shared/site_header'
+    .main-container
+      .container
+        .header-tabs
+          %ul
+            %li
+              %a{ :href => settings_path, :class => url_for == settings_path ? 'current' : '' } 修改资料
+            %li
+              %a{ :href => setting_password_path, :class => url_for == setting_password_path ? 'current' : '' } 修改密码
+            %li
+              %a{ :href => setting_avatar_path, :class => url_for == setting_avatar_path ? 'current' : '' } 设置头像
+        .setting
+          = yield
+    = render 'layouts/shared/site_footer'

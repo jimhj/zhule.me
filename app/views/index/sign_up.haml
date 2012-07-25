@@ -1,0 +1,46 @@
+- content_for :header_js do
+  = javascript_include_tag 'sign'
+
+.container
+  .left_form
+    .sign_up_form
+      .notify
+        注册助乐网
+      = form_tag sign_up_path, :id => 'newUserForm' do
+        .form_panel
+          = render 'shared/flash_notice'
+          .blank
+            %span.attr 邮箱：
+            %input.text{ :type => 'text', :name => 'user[email]' }
+            %span.message 输入你的邮箱
+          .blank
+            %span.attr 昵称：
+            %input.text{ :type => 'text', :name => 'user[login]' }
+            %span.message 输入你想要的昵称
+          .blank
+            %span.attr 密码：
+            %input.text{ :type => 'password', :name => 'user[password]' }
+            %span.message 输入安全的密码
+          .blank
+            %span.attr 确认密码：
+            %input.text{ :type => 'password', :name => 'user[password_confirmation]' }
+            %span.message 再输入一遍密码
+          .buttons
+            %a.button.submit{ :href => 'javascript:;' } 提交注册
+
+  .right_reminder
+    .authlogin     
+      .title
+        或者使用以下方式登录
+      .logways
+        %p
+          = image_tag 'weibo240.png'
+
+    .signed_up     
+      .title
+        已经有账号了？
+      .links
+        %p
+          %a{ :href => sign_in_path } 登录
+        %p
+          %a{ :href => '#' } 忘记密码        

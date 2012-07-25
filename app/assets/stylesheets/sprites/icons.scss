@@ -1,0 +1,42 @@
+/*
+
+        Creating a sprite from following images:
+        
+        app/assets/images/sprites/icons/c_map.png (16x16)
+        app/assets/images/sprites/icons/c_person.png (16x16)
+        app/assets/images/sprites/icons/certificate.png (16x16)
+        app/assets/images/sprites/icons/comment.png (16x16)
+        app/assets/images/sprites/icons/comt.png (16x16)
+        app/assets/images/sprites/icons/heart.png (16x16)
+        app/assets/images/sprites/icons/img.png (16x16)
+        app/assets/images/sprites/icons/mail.png (16x16)
+        app/assets/images/sprites/icons/map.png (16x16)
+        app/assets/images/sprites/icons/pencil.png (16x16)
+        app/assets/images/sprites/icons/person.png (16x16)
+        app/assets/images/sprites/icons/smile.png (16x16)
+        app/assets/images/sprites/icons/up.png (16x16)
+        app/assets/images/sprites/icons/weibo.png (16x16)
+
+        Output files:
+          app/assets/images/sprites/icons.png
+          app/assets/stylesheets/sprites/icons.scss
+
+        Output size:
+          16x224
+
+
+*/
+.icons_c_map { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px 0px no-repeat; }
+.icons_c_person { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -16px no-repeat; }
+.icons_certificate { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -32px no-repeat; }
+.icons_comment { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -48px no-repeat; }
+.icons_comt { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -64px no-repeat; }
+.icons_heart { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -80px no-repeat; }
+.icons_img { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -96px no-repeat; }
+.icons_mail { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -112px no-repeat; }
+.icons_map { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -128px no-repeat; }
+.icons_pencil { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -144px no-repeat; }
+.icons_person { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -160px no-repeat; }
+.icons_smile { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -176px no-repeat; }
+.icons_up { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -192px no-repeat; }
+.icons_weibo { width: 16px; height: 16px; background: url(image-path('sprites/icons.png')) 0px -208px no-repeat; }

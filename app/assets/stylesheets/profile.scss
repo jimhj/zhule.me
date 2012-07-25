@@ -1,0 +1,87 @@
+@import 'base';
+
+html { @include body_bg; }
+
+/* layout */ 
+.main-container {
+  @include zoom;
+  margin: 30px auto 10px auto;
+  width: 75%;
+  height: auto;
+  .container {
+    width: 100%;
+    .left-container {
+      float: left;
+      width: 64%;
+      overflow: hidden;
+    }
+    .right-container {
+      float: right;
+      width: 34%;
+      overflow: hidden;
+      
+      .good_at {
+        @include background(5px);
+        padding: 5px 5px;
+        .category_list {
+          padding: 5px 10px;
+          line-height: 30px;
+          a { @include font(14px, #3E8BD9); @include background(3px, #FFF); margin: 0px 3px; padding: 2px 4px; }
+          a:hover { @include font(14px, #FF0000);  }
+        }
+      }
+    }
+
+  }
+}
+
+/* user profile */
+.user_profile {
+  @include background(5px);
+  @include zoom;  
+  padding: 15px 15px;
+  .avatar {
+    float: left;    
+    img { border: 1px solid #FFF; }
+  }
+
+  .user_info {
+    @include font(12px, #666);
+    float: left;
+    margin-left: 10px;
+    width: 380px;
+    min-height: 180px;
+    line-height: 22px;
+
+    .user_name {
+      @include font(20px, #3B5998); font-weight: bold;
+    }
+    .region {
+      @include margin;
+    }
+
+    .hearts { }
+
+    .pages { 
+      @include font(12px); 
+      @include margin(5px);
+      line-height: 24px;
+      a { @include font(12px, #3E8BD9); };
+    }
+
+    .achievement {
+      @include margin(10px);
+      line-height: 16px;
+      a { @include margin(10px, right);  @include font(12px, #3E8BD9); } 
+    }
+  }
+  .actions {
+    float: right;
+  }  
+}
+
+
+.footer {
+  width: 75%;
+}
+

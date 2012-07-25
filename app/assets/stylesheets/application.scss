@@ -1,0 +1,299 @@
+/*
+*= require 'component'
+*= require 'sprites/icons'
+*= require_self
+*/
+
+@import 'base';
+
+/* Css Reset */ 
+body, div, dl, dt, dd, ul, ol, li, 
+h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, legend,
+input, button, textarea, p, blockquote, th, td {
+  margin:0; padding:0;
+}
+
+ul, ol, dl { list-style: none outside none; }
+
+body {
+  font-family: 'Helvetica Neue', Arial, 'Liberation Sans', FreeSans, 'Hiragino Sans GB',sans-serif;  
+  background: none;
+}
+a { text-decoration: none;  }
+img { border: none; }
+i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
+
+
+.site-header {
+  // @include zoom;
+  background: none repeat scroll 0 0 #1E95E5;
+  display: block;
+  height: 40px;
+  line-height: 32px;
+  padding: 10px 155px 0px 155px;
+  .logo {
+    float: left;
+    span.site_name { @include font(30px, #FFFFFF); }
+    span.slogan { 
+      @include font(12px, #FFFFFF); 
+      margin-left: 10px; 
+    }
+  }
+  .signup {
+    float: right;
+    a { @include font(14px, #FFFFFF); }
+    .no-login {}
+    .logged-in {
+
+      .options {
+        display: block; float: left; text-align: center; padding: 0 8px;
+        position: relative;
+      }
+
+      a.user, a.notify, a.setting { 
+        img { vertical-align: middle; }
+      }
+
+      .active {
+       background: none repeat scroll 0 0 #4C4C4C;
+       color: #999999;
+       opacity: 0.9;
+      }
+
+      .dropdown-list {
+        display: none;
+        background: none repeat scroll 0 0 #4C4C4C;
+        z-index: 999;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        height: auto;
+        top: 30px;
+        width: 120px;
+        // opacity: 0.9;
+        a { @include font(12px, #FFF); padding: 0 10px; }
+        .opt { text-align: left; }
+        .opt:hover { @include background(0px, #202020); }
+      }
+      em.notifies_count { 
+        background: none repeat scroll 0 0 #EEE;
+        color: #CCC;
+        border-radius: 3px 3px;
+        padding: 0px 3px;
+      }
+
+      em.notifies_count.red { background: none repeat scroll 0 0 #FF0000; color: #FFF; }
+    }
+  }
+}
+
+.main-container {
+  font-size: 12px;
+}
+
+.container {
+
+}
+
+// Help List 
+.user_zl_list {
+  @include background(5px, #EEE);
+  @include zoom;
+  @include margin(10px);
+  @include font(12px); 
+  padding: 15px 15px;
+  .zl_nav {
+    a { @include font(16px, #3E8BD9); margin-right: 15px; padding: 5px 5px; }
+    a.current { @include background(5px, #FFF); font-weight: bold; }
+    border-bottom: 1px dotted #CCC;
+    padding-bottom: 10px;
+  }
+
+  .zl_list {
+    padding-top: 5px;
+    .zl_li {
+      @include background(3px, #FFF);
+      @include zoom;
+      margin-bottom: 10px;
+      padding: 0px 10px 5px 10px;
+      border: 1px solid #EFF6FC;
+      .detail { 
+        line-height: 22px;
+         padding: 10px 0px 0px 0px;
+        .avatar { 
+          float: left;
+          width: 16%;
+          .action {
+            // text-align: center;
+            padding-left: 10px;
+            a { @include font(12px, #3E8BD9); }
+            i.icons { vertical-align: middle; }
+          }
+
+        }
+        .content {
+          float: left;
+          width: 82%;
+          a.user_name { @include font(12px, #3B5998); font-weight: bold; }
+        }
+      }
+      .status { 
+        @include zoom;
+        float: right;
+        // text-align: right;
+        margin-top: 10px;
+        a { margin-left: 10px; @include font(12px, #3E8BD9); }
+      }
+    }
+  }
+}
+
+//       
+.latest {
+  @include background(5px);
+  margin-top: 10px;
+  padding: 5px 5px;
+  .help_list { 
+    @include font;
+    padding: 10px 5px;
+    .help_li {
+      margin-bottom: 8px;
+      img { vertical-align: bottom; margin-right: 3px; }
+      a.user_name { @include font(14px, #3E8BD9); }
+    } 
+  }
+} 
+
+// Talent List
+.talent {
+  @include background(5px);
+  padding: 5px 5px;
+  margin-top: 10px;
+  .talent_list {
+    @include zoom;
+    padding: 5px 0px 10px 5px;
+    margin-top: 5px;
+    a {
+      padding: 5px 5px;
+      float: left; 
+    }
+  }
+}
+
+// Help Them
+.help_them {
+  @include background(5px);
+  margin-top: 10px;
+  padding: 5px 5px;
+  .ask_for_help { 
+    margin-top: 5px;
+    .help_li {
+      @include zoom;
+      border-bottom: 1px dotted #CCC;
+      padding: 5px 10px;
+      .avatar { float: left; }
+      .summary { 
+        float: left; margin-left: 10px; 
+        width: 230px;
+        .user_name  a { @include font(12px, #3E8BD9); font-weight: bold; }
+        .user_name  a.action { @include font(12px, #3E8BD9); font-weight: normal; margin-left: 10px; } 
+        .wants { @include font; margin-top: 2px; line-height: 18px; }
+      }
+    }
+
+    .help_li:hover {
+      @include background(0px, #EFF6FC)
+    }
+  }
+}
+
+// Comment
+
+.comment_panel {
+  @include background(5px);
+  @include zoom;  
+  padding: 10px 10px;
+  margin-top: 10px;
+  .new_comt_form {
+    @include zoom;
+    margin-top: 10px;
+    padding-bottom: 10px;
+    textarea { float: left; width: 88%; height: 40px; }
+    a.button { float: right; height: 30px; padding: 13px 10px 2px 10px; }
+  }
+
+  .comt_list {
+    @include font(12px);
+    .comt_li {
+      @include zoom;
+      width: 100%;
+      border-bottom: 1px solid #CCC;
+      padding: 10px 5px;
+      a.avatar {
+        float: left;
+        width: 50px;
+        height: 50px;
+      }
+      .comt_info {
+        float: left;
+        margin-left: 10px;
+        width: 88%;
+        .user_info {
+          @include zoom;
+          a { @include font(12px, #3E8BD9); }
+          a.user_name { margin-right: 10px; }
+          .info_left { float: left; }
+          .info_right { float: right; }
+        }
+        .content {
+          padding-top: 3px;
+          line-height: 20px;
+        }
+
+      }
+    }
+    .comt_li:hover {
+      @include background(0px, #FFF);
+    }
+  }
+}
+
+// Flash notice
+.flash_notice {
+  width: 96%;
+  .errors {
+    p { @include font(12px, #B94A48); font-weight: bold; padding-left: 10px; }
+    ul { list-style: disc outside none; padding-left: 30px; }
+    @include font(12px, #B94A48);
+    padding: 3px 3px;
+    line-height: 22px;
+    background-color: #F2DEDE;
+    border: 1px solid #EED3D7;
+  }
+
+  .success {
+    p { @include font(12px, #468847); font-weight: bold; padding-left: 10px; }
+    @include font(12px, #468847);
+    padding: 3px 3px;
+    line-height: 22px;
+    background-color: #DFF0D8;
+    border: 1px solid #D6E9C6;    
+  }
+}
+
+// Footer
+.footer {
+  clear: both;
+  border-top: 1px dotted #999;
+  margin: 20px auto;
+  padding: 10px 3px;
+  @include font(12px, #999);
+  line-height: 22px;
+  a { @include font(12px, #3B5998); padding-right: 10px; }
+  .about_us { float:left; }
+  .weibo { 
+    float: right;
+    font-size: 16px; line-height: 16px; 
+    
+  }
+}

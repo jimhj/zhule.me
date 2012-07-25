@@ -1,0 +1,14 @@
+.edit_avatar_form_panel
+  = render 'shared/flash_notice'
+  .current_avatar
+    .div-name
+      当前头像
+    .avatar_img
+      = image_tag current_user.avatar_url(:l), :size => '180x180'
+  .upload_avatar
+    .div-name
+      上传新头像
+    .upload
+      %input{ :type => 'file' }
+      .buttons
+        %a.button.submit{ :href => 'javascript:;' } 上传头像

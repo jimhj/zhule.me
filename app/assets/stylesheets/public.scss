@@ -1,0 +1,125 @@
+@import 'base';
+
+html {
+  @include body_bg;
+}
+
+.main-container {
+  margin: 30px auto 10px auto;
+  width: 75%;
+  height: auto;
+  @include zoom;
+  .container {
+    width: 100%;
+  }
+}
+
+// Site root.
+.container {
+  background: none;
+  .recommands {
+    width: 64%;
+    overflow: hidden;
+    float: left;
+
+    .aboutzl {
+      @include background(5px, #EFF6FC); @include zoom;
+      @include font(14px);
+      line-height: 24px;
+      padding: 10px 10px 18px 10px;
+      height: 60px;
+      margin-bottom: 15px;
+      span { font-size: 26px; font-weight: bold; }
+    }
+    .recommand {
+      @include background; @include zoom;
+      padding: 6px 10px; margin-bottom: 15px;
+      .avatar { 
+        float: left; width: 80px;
+        text-align: center;
+        @include font;
+      }
+
+      .seekhelp {
+        margin-left: 90px;
+
+        a.user_name {
+          @include font(14px, #3B5998); font-weight: bold;
+        }
+
+        p.detail {
+          @include font(14px, #999); line-height: 22px;
+        }
+
+      }
+      .tools {
+        text-align: right; overflow:hidden;
+        a.button{ vertical-align: bottom; margin-left: 10px; }
+      }
+    }
+
+  }
+  
+  .login-form {
+    @include background;
+    width: 34%;
+    float: right;
+    padding-bottom: 1px;
+    text-align: center;
+    a.forget_password { @include font(14px, #999); font-weight: bold; text-decoration: underline; }
+    p.register { padding-top: 10px; @include font(14px, #999); font-weight: bold; }
+    p.error { text-align: center; @include font(12px, #FF0000); }
+    .login {
+      p { margin: 10px; }
+      input.text { margin-left: 20px; }
+      a.button { vertical-align: bottom; margin-right: 5px; }
+
+    }
+  }
+}
+
+// Sign Up.
+
+.container {
+  background: none;
+  .left_form {
+    @include background(5px); @include zoom;
+    @include font(14px);     
+    width: 64%;
+    overflow: hidden;
+    float: left;    
+    .sign_up_form {
+      padding: 5px 16px 12px 16px;
+      height: 540px;
+      .notify { @include font(22px, #666666); margin: 5px 0px 10px; border-bottom: 1px solid #CCC; padding-bottom: 10px; }
+      @include form;
+    }
+  }
+
+  .right_reminder {
+    width: 34%;
+    float: right;
+    .authlogin {
+      @include background;
+      padding: 3px 3px;
+      height: 100px;
+      .logways { text-align: center; margin: 20px 0;}
+    }
+
+    .signed_up { 
+      @include background;
+      padding: 3px 3px;
+      margin-top: 10px;
+      height: 100px;
+      .links {
+        padding: 3px 5px;
+        line-height: 22px;
+        a { @include font(14px, #3B5998); }
+      }
+    }
+  }
+}
+
+.footer {
+  width: 75%;
+}

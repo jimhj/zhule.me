@@ -1,0 +1,11 @@
+.flash_notice
+  - unless flash[:error].blank?
+    - errors = Array flash[:error]
+    .errors
+      %p= "有#{errors.size}处错误导致提交不成功"
+      %ul
+        - errors.each do |err|
+          %li= err
+  - unless flash[:success].blank?
+    .success
+      %p= flash[:success]        

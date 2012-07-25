@@ -1,0 +1,28 @@
+.user_dialogs
+  .title
+    我的私信
+    %a.action
+      = "共 #{current_user.dialogs_count} 组私信"
+  .dialog_list
+    - if @dialogs.present?
+      - @dialogs.each do |dialog|
+        .dialog
+          .user
+            .avatar
+              = image_tag dialog.from_user.avatar_url(:c), :size => '50x50'
+            .user_name
+              %a{ :href => user_path(dialog.from_user_id) }= dialog.from_user.login 
+          .info
+            .dialog_content
+              %p
+                %a.user_name{ :href => user_path(dialog.messages.last.sender_id) }= "#{dialog.last_reply_user_login}:"
+                = dialog.messages.last.content
+            .actions
+              %span 2011-12-09
+              %a{ :href => dialog_path(dialog) }= "共 #{dialog.messages_count} 条"
+              %a{ :href => dialog_path(dialog) } 回复
+              %a{ :href => '#' } 删除
+    - else
+      %p.alignmid
+        暂时没有任何私信。
+

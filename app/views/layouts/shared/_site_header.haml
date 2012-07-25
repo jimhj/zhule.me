@@ -1,0 +1,44 @@
+.site-header
+  .logo
+    %a{ :href => home_path }
+      %span.site_name 助乐
+      %span.slogan 基于互相帮助的小微社区
+  .signup
+    - if logged_in?
+      .logged-in
+        .options
+          %a.user{ :href => user_path(current_user.id) }
+            = image_tag current_user.avatar_url(:s), :size => '15x15'
+            = current_user.login
+        .options
+          %a.notify{ :href => '#' }
+            %em.notifies_count.red 20
+            消息
+          .dropdown-list
+            .opt
+              %a{ :href => '#' } 
+                系统通知
+                %span 10
+            .opt
+              %a{ :href => dialogs_path } 
+                私信
+                %span 10
+        .options
+          %a.setting{ :href => settings_path } 账号
+          .dropdown-list
+            .opt
+              %a{ :href => setting_avatar_path } 
+                设置头像
+            .opt
+              %a{ :href => settings_path } 
+                修改资料
+            .opt
+              %a{ :href => setting_password_path } 
+                修改密码
+            .opt
+              %a{ :href => sign_out_path } 
+                退出登录                               
+    - else
+      .no-login
+        %a{ :href => sign_up_path } 注册
+        %a{ :href => sign_in_path } 登录        

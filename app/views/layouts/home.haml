@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+%html
+  %head
+    %title 助乐 - 帮助别人，快乐自己！
+    = stylesheet_link_tag 'application', 'home'
+    = yield :header_css
+    = javascript_include_tag 'app', 'home'
+    = yield :header_js
+    = csrf_meta_tags
+    %meta{ :name => 'keywords', :content => '帮助别人，快乐自己' }
+    %meta{ :name => 'description', :content => '帮助别人，快乐自己' }
+    /Le HTML5 shim, for IE6-8 support of HTML5 elements
+    /[if IE 9]
+      %script{ :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
+  %body
+    = render 'layouts/shared/site_header'
+    .main-container
+      .container
+        .left-container
+          = yield                                                                                        
+        .right-container
+          .achievement
+            %p
+              %span
+                我的爱心指数：
+              - 3.times do
+                %i.icons.icons_heart
+            %p
+              %span
+                我帮助过的：
+              %a{ :href => '#' }
+                %em.num 100
+            %p
+              %span
+                我求助过的：
+              %a{ :href => home_path(:type => 'assistances') }
+                %em.num.green= current_user.assistances_count
+            %p
+              %span
+                我的关注：
+              %a{ :href => '#' }
+                %em.num.red 10
+
+          .latest
+            .title
+              正在发生的
+              %a.action 更多
+            .help_list
+              - 6.times do
+                .help_li
+                  = image_tag 'demo2.jpg', :size => '20x20'
+                  %a.user_name{ :href => '#' } 321小星星
+                  帮助了
+                  = image_tag 'demo.jpg', :size => '20x20'
+                  %a.user_name{ :href => '#' } heiying3
+          .talent
+            .title
+              热心达人
+              %a.action 更多
+            .talent_list
+              - 12.times do
+                %a{ :href => '#', :title => '热心达人' }
+                  = image_tag 'demo.jpg', :size => '50x50'
+                    
+
+    = render 'layouts/shared/site_footer'

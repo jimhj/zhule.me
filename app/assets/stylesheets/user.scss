@@ -1,0 +1,76 @@
+@import 'base';
+
+.user_profile {
+  @include background(5px);
+  @include zoom;  
+  padding: 15px 15px;
+  .avatar {
+    float: left;    
+    img { border: 1px solid #FFF; }
+  }
+
+  .user_info {
+    @include font(12px, #666);
+    float: left;
+    margin-left: 10px;
+    width: 380px;
+    min-height: 180px;
+    line-height: 22px;
+
+    .user_name {
+      @include font(20px, #3B5998); font-weight: bold;
+    }
+    .region {
+      @include margin;
+    }
+
+    .hearts { }
+
+    .pages { 
+      @include font(12px); 
+      @include margin(5px);
+      line-height: 24px;
+      a { @include font(12px, #3E8BD9); };
+    }
+
+    .achievement {
+      @include margin(10px);
+      line-height: 16px;
+      a { @include margin(10px, right);  @include font(12px, #3E8BD9); } 
+    }
+  }
+  .actions {
+    float: right;
+  }  
+}
+
+.user_zl_list {
+  @include background(5px, #EEE);
+  @include zoom;
+  @include margin(10px);
+  @include font(12px); 
+  padding: 15px 15px;
+  .zl_nav {
+    a { @include font(16px, #3E8BD9); margin-right: 15px; padding: 5px 5px; }
+    a.current { @include background(5px, #FFF); font-weight: bold; }
+    border-bottom: 1px dotted #CCC;
+    padding-bottom: 10px;
+  }
+
+  .zl_list {
+    padding-top: 5px;
+    .zl_li {
+      @include background(3px, #FFF);
+      @include zoom;
+      margin-bottom: 10px;
+      padding: 0px 10px 5px 10px;
+      border: 1px solid #EFF6FC;
+      p { line-height: 22px; }
+      .status { 
+        text-align: right;
+        margin-top: 15px;
+        a { margin-left: 10px; @include font(12px, #3E8BD9); }
+      }
+    }
+  }
+}

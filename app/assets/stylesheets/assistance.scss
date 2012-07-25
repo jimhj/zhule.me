@@ -1,0 +1,144 @@
+@import 'base';
+$g-border: 1px solid #CCC;
+
+html { @include body_bg; }
+
+.main-container {
+  @include zoom;
+  margin: 30px auto 10px auto;
+  width: 75%;
+  height: auto;
+  min-height: 700px;
+  .container {
+    .left-container {
+      float: left;
+      width: 64%;
+      overflow: hidden;
+    }
+
+    .right-container {
+      float: right;
+      width: 34%;
+      overflow: hidden;
+      .user_info {
+        @include background(5px);
+        @include zoom;
+        @include font(12px);
+        padding: 10px 10px;
+        line-height: 20px;
+        .avatar { 
+          float: left;
+          img { border: 1px solid #FFF; }
+        }
+        .info {
+          float: left;
+          margin-left: 10px;
+          width: 68%;
+          .user_name a { @include font(14px, #3B5998); font-weight: bold; }
+        }
+      }       
+    }
+  }
+}
+
+/* Assistance Detail */
+.assistance_detail {
+  @include background(5px);
+  @include zoom;  
+  padding: 15px 15px;
+  .content {
+    @include background(3px, #FFF);
+    @include font(14px);
+    padding: 10px 10px;
+    border: 1px solid #EFF6FC;
+    line-height: 24px;    
+  }
+  .tools {
+    @include font(12px);
+    @include zoom;
+    margin-top: 15px;
+    
+    .status {
+      float: left;
+      a { @include font(12px, #3E8BD9); margin-left: 10px; }
+    }
+
+    .buttons { float: right; }
+    
+  }
+}
+
+.i_can_help {
+  @include background(5px);
+  @include zoom;  
+  padding: 10px 5px;
+  margin-top: 10px;
+  display: none;
+  height: 56px;
+  textarea { float: left; width: 88%; height: 40px; }
+  a.button { float: right; height: 30px; padding: 13px 10px 2px 10px; }  
+}
+
+.participate {
+  @include background(5px);
+  @include zoom;  
+  padding: 5px 5px;
+  margin-top: 10px;
+  .helper_list {
+    @include zoom;
+    padding: 5px 8px;
+    .helper_li { 
+      float: left; position: relative;
+      a { padding: 5px 11px; }
+      i.icons.icons_smile {
+        display: block;
+        position: absolute;
+        z-index: 1000;
+        top: 33px;
+        left: 45px;
+      }
+    }
+
+    .helper_single_line {
+      @include zoom;
+      width: 100%;
+      border-bottom: 1px solid #CCC;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      .avatar { 
+        float: left; 
+        text-align: center;
+        a{ @include font(12px, #3E8BD9); }
+        .message { margin-top: 3px; a { @include font(12px); } }
+      }
+      .info { 
+        @include font(12px);
+        float: left; width: 80%; margin-left: 10px; padding: 5px 5px;
+        line-height: 18px;
+        a.user_name { @include font(12px, #3E8BD9); font-weight: bold; }
+      }
+      .bottom_tools {
+        @include font(12px);
+        @include zoom;
+        margin-top: 10px;
+        .status {
+          float: left;
+          a { @include font(12px, #3E8BD9); margin-left: 10px; }
+        }
+
+        .buttons { float: right; }             
+      }
+    }    
+
+    // a { padding: 5px 11px; float: left; position: relative;  }
+
+  }
+}
+
+
+
+
+.footer {
+  width: 75%;
+}
+

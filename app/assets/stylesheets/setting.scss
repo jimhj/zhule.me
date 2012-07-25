@@ -1,0 +1,70 @@
+@import 'base';
+
+html {
+  @include body_bg;
+}
+.main-container {
+  @include zoom;
+  margin: 30px auto 10px auto;
+  width: 75%;
+  height: auto;
+  .container {
+    @include background(5px);
+    min-height: 500px;
+    .header-tabs {
+      @include zoom;
+      padding: 20px 0px 10px 0px;
+      width: 90%;
+      margin: 0px auto;
+      border-bottom: 1px solid #CCC;
+      ul {
+        li { float: left;  }
+        li a { @include font(14px, #3E8BD9); padding: 5px 20px; margin-left: 5px; }
+        li a:hover { @include background(3px, #FFF); }
+        li a.current { @include background(3px, #FFF); }
+      }
+    }
+  }
+}
+
+.edit_info_form_panel {
+  @include zoom;
+  @include form(30px, 200px);
+  @include font(14px);
+  width: 90%;
+  margin: 0px auto;
+  padding: 10px 0px 20px 0px;
+  textarea { width: 445px; height: 80px; float: left; }
+
+}
+
+.edit_avatar_form_panel {
+  @include zoom;
+  @include font(12px);
+  width: 90%;
+  margin: 0px auto;
+  padding: 10px 0px 60px 60px;
+  .current_avatar {
+    float: left;
+    width: 240px;
+    .avatar_img {
+      text-align: center;
+    }
+  }
+
+  .upload_avatar {
+    float: left;
+    margin-left: 60px;
+    line-height: 22px;
+    .buttons { margin-top: 10px; } 
+  }
+  .div-name {
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+    // border-bottom: 1px solid #CCC;
+  }
+}
+
+.footer {
+  width: 75%;
+}

@@ -1,0 +1,50 @@
+.assistance_detail
+  .content
+    = @assist.content
+  .tools
+    .status
+      %span 
+        于 3 天前
+      %a{ :href => '#' }
+        %i.icons.icons_map
+        北京 朝阳
+      %a{ :href => joined_assistance_path(@assist.id) }
+        %i.icons.icons_person
+        = "参与帮忙(#{@assist.helpers_count})"
+      %a{ :href => '#' }
+        %i.icons.icons_comt
+        评论(12)
+      %a{ :href => '#' }
+        %i.icons.icons_pencil
+        编辑        
+    .buttons
+      - if current_user != @user
+        %a.button.helpWhom{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' } 帮她一把
+
+.i_can_help    
+  %textarea.form_text{ 'data-assistance_id' => @assist.id } 我能帮你：
+  %a.button.submit{ :href => 'javascript:;' } 发送
+
+.participate
+  .title
+    这些人参与帮忙了
+  .helper_list
+    - @helpers.each do |help|
+      .helper_single_line
+        .avatar
+          %a{ :href => user_path(help.user_id) }
+            = image_tag help.user.avatar_url(:m), :size => '80x80'
+          .message
+            %a{ :href => 'javascript:;' }
+              %i.icons.icons_mail
+              私信
+        .info
+          %p
+            %a.user_name{ :href => user_path(help.user_id) }= "#{help.user.login}:"
+            = help.content          
+          .bottom_tools
+            .status
+              %span= help.created_at
+            .buttons
+              %a.button.green{ :href => 'javascript:;' } 对我有用
+

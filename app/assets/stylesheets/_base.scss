@@ -1,0 +1,100 @@
+@mixin body_bg($img: 'retro_bg.png') {
+  background: image-url($img) repeat scroll 0 0 transparent;
+}
+
+@mixin background($radius: 5px, $bgcolor: #EEE) {
+  -moz-border-radius: #{$radius} #{$radius};
+  -webkit-border-radius: #{$radius} #{$radius};
+  -khtml-border-radius: #{$radius} #{$radius};
+  -o-border-radius: #{$radius} #{$radius};  
+  background: none repeat scroll 0 0 #{$bgcolor};
+  border-radius: #{$radius} #{$radius};
+}
+
+@mixin zoom {
+  zoom: 1;
+  overflow: hidden;
+  clear: both;
+}
+
+@mixin font($size: 12px, $color: #999) {
+  color: $color;
+  font-size: $size;
+}
+
+@mixin border($border: #D9DCE2) {
+  border: 1px solid #{$border};
+}
+
+@mixin margin($px: 5px, $side: top) {
+  margin-#{$side}: $px;
+};
+
+@mixin user_zl_list {
+  @include background(5px, #EEE);
+  @include zoom;
+  @include margin(10px);
+  @include font(12px); 
+  padding: 15px 15px;
+  .zl_nav {
+    a { @include font(16px, #3E8BD9); margin-right: 15px; padding: 5px 5px; }
+    a.current { @include background(5px, #FFF); font-weight: bold; }
+    border-bottom: 1px dotted #CCC;
+    padding-bottom: 10px;
+  }
+
+  .zl_list {
+    padding-top: 5px;
+    .zl_li {
+      @include background(3px, #FFF);
+      @include zoom;
+      margin-bottom: 10px;
+      padding: 0px 10px 5px 10px;
+      border: 1px solid #EFF6FC;
+      .detail { 
+        line-height: 22px;
+         padding: 10px 0px 0px 0px;
+        .avatar { 
+          float: left;
+          width: 16%;
+          .action {
+            // text-align: center;
+            padding-left: 10px;
+            a { @include font(12px, #3E8BD9); }
+            i.icons { vertical-align: middle; }
+          }
+
+        }
+        .content {
+          float: left;
+          width: 82%;
+          a.user_name { @include font(12px, #3B5998); font-weight: bold; }
+        }
+      }
+      .status { 
+        @include zoom;
+        float: right;
+        // text-align: right;
+        margin-top: 10px;
+        a { margin-left: 10px; @include font(12px, #3E8BD9); }
+      }
+    }
+  }
+}
+
+@mixin form($margin: 30px, $span-width: 120px) {
+  .blank { 
+    @include zoom;
+    margin: #{$margin} 0px;
+    span.message { float: left;  width: $span-width; margin-left: 10px; padding-top: 10px; }
+    span.attr {
+      display: block;
+      width: 100px;
+      float: left;
+      text-align: right;
+      padding-top: 10px;
+    }
+    input.text { float: left; }
+  }
+  .buttons { margin-top: 20px; padding-left: 100px; }  
+}

@@ -1,0 +1,25 @@
+.edit_info_form_panel
+  = render 'shared/flash_notice'
+  = form_tag settings_path, :id => 'settingForm' do
+    .blank
+      %span.attr 邮箱：
+      %input.text.disabled{ :type => 'text', :disabled => true, :value => current_user.email }
+      %span.message 你当前的邮箱
+    .blank
+      %span.attr 昵称：
+      %input.text{ :type => 'text', :name => 'login', :value => current_user.login }
+      %span.message 你的昵称
+    .blank
+      %span.attr 地区：
+      %input.text{ :type => 'text', :name => 'address', :value => current_user.address }
+      %span.message 你所在的地区
+    .blank
+      %span.attr 擅长于：
+      %textarea.form_text{ :type => 'text', :name => 'tag_list' }= current_user.tag_list
+      %span.message 形如 ‘计算机，旅游’，用 ',' 隔开
+    .blank
+      %span.attr 个人签名：
+      %textarea.form_text{ :type => 'text', :name => 'tagline' }= current_user.tagline
+
+    .buttons
+      %a.button.submit{ :href => 'javascript:;' } 确认修改
