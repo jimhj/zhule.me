@@ -21,7 +21,7 @@ class Assistance
   counter_cache :name => :user, :inverse_of => :assistances
 
   has_many :assistance_helpers
-  # has_many :comments, :as => :commentable
+  has_many :comments, :as => :commentable
 
 
 end
