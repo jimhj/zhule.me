@@ -15,6 +15,4 @@ class AssistanceHelper
 
   validates_uniqueness_of :user_id, :scope => :assistance_id
 
-  # scope :find_by_assistance_id, lambda { |assistance_id| where(:assistance_id => assistance_id).first }
-
 end

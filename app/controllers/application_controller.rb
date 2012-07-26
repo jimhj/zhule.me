@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
     current_user = nil
     session[:user_id] = nil
     session.clear
-  end  
+  end
 
 
 end

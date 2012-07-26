@@ -40,6 +40,9 @@ class User
   validates_presence_of :password
   validates_confirmation_of :password
 
+  attr_accessible :avatar, :avatar_cache
+  mount_uploader :avatar, AvatarUploader
+
   def tag_list=(value)
     self.tags = value.split(/,|，/) if !value.blank?
   end
@@ -57,20 +60,6 @@ class User
   def password=(new_password)
     @password = Password.create(new_password)
     self.password_digest = @password    
-  end
-  
-  def avatar_url(style = :c)
-    dafualt_avatars = {
-      :l    =>  'avatar/avatar_180.jpg',
-      :m    =>  'avatar/avatar_80.jpg',
-      :c    =>  'avatar/avatar_50.jpg',
-      :s    =>  'avatar/avatar_30.jpg'
-    }
-    if self.avatar.blank?
-      dafualt_avatars[style]
-    else
-      ''
-    end
   end
 
   def helped?(assist_id)

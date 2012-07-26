@@ -1,0 +1,6 @@
+# Image DFS Path
+enable_dfs_host_parse: false
+dfs_host_prefix: 'http://i%s.kandao.com'
+
+enable_image_storage_parse: false
+location_to_store_uploaded_assets: '/home/laohuang/uploaded'

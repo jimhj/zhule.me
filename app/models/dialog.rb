@@ -27,14 +27,12 @@ class Dialog
   index :from_user_id => 1
   index :updated_at => -1
 
-  def self.create_dialog(current_user_id, to_user_id)
-    begin
-      self_dialog = self.find_or_create_by(:from_user_id => current_user_id, :to_user_id => to_user_id)
-      other_dialog = self.find_or_create_by(:from_user_id => to_user_id, :to_user_id => current_user_id)
-      return self_dialog, other_dialog
-    rescue
-      nil
-    end
-  end
+  # def self.create_dialog(current_user_id, to_user_id)
+  #   self.transaction do
+  #     self_dialog = self.find_or_create_by(:from_user_id => current_user_id, :to_user_id => to_user_id)
+  #     other_dialog = self.find_or_create_by(:from_user_id => to_user_id, :to_user_id => current_user_id)
+  #     return self_dialog, other_dialog
+  #   end
+  # end
 
 end

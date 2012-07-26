@@ -22,8 +22,9 @@ class Message
 
   def self.post(sender_id, receiver_id, content)
     return if sender_id == receiver_id
-    self.transaction do
-      self_dialog, other_dialog = Dialog.create_dialog(sender_id, receiver_id)
+    self.transaction do      
+      self_dialog = self.find_or_create_by(:from_user_id => sender_id, :to_user_id => receiver_id)
+      other_dialog = self.find_or_create_by(:from_user_id => receiver_id, :to_user_id => sender_id)
       params = { :content => content, :sender_id => sender_id, :receiver_id => receiver_id }
       message = self_dialog.messages.create(params)
       other_dialog.messages.create(params)

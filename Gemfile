@@ -11,6 +11,14 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 # Template
 gem 'haml'
 
+# Upload Image
+gem 'mini_magick', '3.4', :require => false
+gem 'carrierwave', '0.6.2'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+
+# YAML
+gem "settingslogic", "~> 2.0.6"
+
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
