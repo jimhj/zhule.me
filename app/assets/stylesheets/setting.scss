@@ -65,6 +65,33 @@ html {
   }
 }
 
+.crop_avatar_form_panel {
+  @include zoom;
+  @include font(12px);
+  width: 90%;
+  margin: 0px auto;
+  padding: 10px 0px 60px 60px;
+  .current_avatar {
+    float: left;
+    width: 600px;
+    .avatar_img {
+      text-align: center;
+    }
+  }
+
+  .crop_avatar {
+    float: left;
+    margin-left: 20px;
+    line-height: 22px;
+    .buttons { margin-top: 10px; text-align: center; } 
+  }
+  .div-name {
+    padding-bottom: 3px;
+    margin-bottom: 5px;
+    // border-bottom: 1px solid #CCC;
+  }
+}
+
 .footer {
   width: 75%;
 }

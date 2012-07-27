@@ -6,6 +6,7 @@ Zhule.Setting =
       $('#settingForm')[0].submit()
 
     Zhule.Setting.Basic.init()
+    # Zhule.Setting.Avatar.init()
     return
 
 Zhule.Setting.Basic =
@@ -13,6 +14,7 @@ Zhule.Setting.Basic =
     return
 
 Zhule.Setting.Avatar = {}
+
 
 $(document).ready ->
   Zhule.Setting.init() 

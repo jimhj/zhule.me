@@ -30,6 +30,7 @@ Zhule::Application.routes.draw do
     match '/' => 'settings#index', :as => :settings, :via => [:get, :post]
     match 'password' => 'settings#password', :as => :setting_password, :via => [:get, :post]
     match 'avatar' => 'settings#avatar', :as => :setting_avatar, :via => [:get, :post]
+    match 'avatar/crop' => 'settings#crop_avatar', :as => :crop_avatar
   end
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'

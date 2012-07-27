@@ -38,12 +38,33 @@ class SettingsController < ApplicationController
   def avatar
     if request.post?
       current_user.avatar = params[:avatar]
-      unless current_user.save
+      if current_user.save
+        current_avatar_path = File.join(Rails.root, 'public', current_user.avatar.url)
+        image = MiniMagick::Image.open(current_avatar_path)
+        redirect_to :back and return if image[:width] < 180 || image[:height] < 180 
+        render :template => 'settings/crop_avatar'
+      else
         flash[:error] = current_user.errors.full_messages
+        redirect_to :back
       end
-      redirect_to :back
     end
+  end
 
+  def crop_avatar
+    if request.post?
+      begin
+        current_avatar_path = File.join(Rails.root, 'public', current_user.avatar.url)
+        x, y, w, h = params[:crop_position].split(',')
+        image = MiniMagick::Image.open(current_avatar_path)
+        image.crop("#{w}x#{h}+#{x}+#{y}!")
+        image.coalesce(current_avatar_path, current_avatar_path) if image.mime_type == 'image/gif'
+        current_user.avatar = image
+        current_user.save
+      rescue => e
+        logger.error e
+      end
+      redirect_to setting_avatar_path
+    end
   end
 
 
