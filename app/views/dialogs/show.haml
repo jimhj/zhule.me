@@ -20,7 +20,7 @@
       - @messages.each do |message|
         .mode{ :class => current_user.id == message.sender_id ? 'right_mode' : 'left_mode' }
           .timeline
-            3分钟之前
+            %abbr.timeago{ :title => message.created_at }
           .avatar
             - if current_user.id == message.sender_id
               %a{ :href => user_path(current_user.id), :title => current_user.login }

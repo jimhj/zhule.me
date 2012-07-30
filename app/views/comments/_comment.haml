@@ -1,0 +1,14 @@
+.comt_li
+  %a.avatar{ :href => user_path(comment.user_id), :title => comment.user.login }
+    = image_tag comment.user.avatar_url(:c), :size => '50x50'
+  .comt_info
+    .user_info
+      .info_left
+        %a.user_name{ :href => user_path(comment.user_id) }= comment.user.login
+        %abbr.timeago{ :title => comment.created_at }
+      .info_right
+        - if current_user.id == comment.user_id || current_user.id == comment.commentable.user_id
+          %a.deleteComment{ :href => 'javascript:;', 'data-comment_id' => comment.id } 删除
+        %a.reply{ :href => '#' } 回复
+    %p.content
+      = comment.content

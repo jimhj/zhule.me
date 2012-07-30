@@ -9,9 +9,10 @@ Zhule.Home.Assistance =
 
   __newAssistance : ->
     $form = $('#newAssistance')
-    $address = $('<input type="text" class="text" style="width: 160px"/>')
+    $address = $('<input type="text" class="" style="width: 160px"/>')
     $fileInput = $('<input type="file" />')
     dialog1 = dialog2 = null
+    # [addr="北京"][/addr]
     # dialog2 = null
 
     $form.find('a.location').click ->

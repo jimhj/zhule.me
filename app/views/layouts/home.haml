@@ -27,19 +27,19 @@
                 %i.icons.icons_heart
             %p
               %span
-                我帮助过的：
-              %a{ :href => '#' }
-                %em.num 100
+                帮助过：
+              %a{ :href => home_path(:type => 'helped') }
+                %em= current_user.helped_stuffs_count
             %p
               %span
-                我求助过的：
+                求助过：
               %a{ :href => home_path(:type => 'assistances') }
-                %em.num.green= current_user.assistances_count
+                %em= current_user.assistances_count
             %p
               %span
-                我的关注：
-              %a{ :href => '#' }
-                %em.num.red 10
+                关注的用户数：
+              %a{ :href => home_path }
+                %em= current_user.followers_count
 
           .latest
             .title

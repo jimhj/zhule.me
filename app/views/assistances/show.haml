@@ -13,7 +13,7 @@
         = "参与帮忙(#{@assist.helpers_count})"
       %a{ :href => '#' }
         %i.icons.icons_comt
-        评论(12)
+        = "评论(#{@assist.comments_count})"
       %a{ :href => '#' }
         %i.icons.icons_pencil
         编辑        
@@ -41,21 +41,12 @@
     评论
     %a.action 发表
   .comt_list
-    - 10.times do
-      .comt_li
-        %a.avatar
-          = image_tag 'demo2.jpg', :size => '50x50'
-        .comt_info
-          .user_info
-            .info_left
-              %a.user_name{ :href => '#' } huangjin
-              %span 回复于 1 分钟前
-            .info_right
-              %a{ :href => '#' } 删除
-              %a.reply{ :href => '#' } 回复
-          %p.content
-            说的不错说的不错说的不错说的不错说的不错说的不错说的不错说的不错说的不错说的不错说的不错说的不错说的不错
+    - if @comments.blank?
+      %p{ :style => 'margin:10px 10px;' } 暂时没有任何评论...
+    - else
+      - @comments.each do |comment|
+        = render :partial => 'comments/comment', :locals => { :comment => comment }
   .new_comt_form
     %textarea.form_text
-    %a.button{ :href => '#' } 评论
+    %a.button.postComment{ :href => 'javascript:;', 'data-commentable_id' => @assist.id, 'data-commentable_type' => 'Assistance' } 评论
 

@@ -28,6 +28,8 @@ Zhule::Application.routes.draw do
       post :join
     end
   end
+
+  resources :comments, :only => [:create, :destroy]
   
 
   scope 'settings' do

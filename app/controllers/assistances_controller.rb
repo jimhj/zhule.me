@@ -9,6 +9,7 @@ class AssistancesController < ApplicationController
   def show
     @assist = Assistance.where(:_id => params[:id]).first
     @user = @assist.user
+    @comments = @assist.comments.includes(:user)
   end
 
   def create

@@ -11,6 +11,7 @@ class Assistance
   field :solved, :type => Boolean, :default => false
 
   field :helpers_count, :type => Integer, :default => 0
+  field :comments_count, :type => Integer, :default => 0
 
   index :user_id => 1
 
