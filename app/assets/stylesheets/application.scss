@@ -1,4 +1,6 @@
 /*
+*= require 'lib/artdialog/skins/blue'
+*= require 'popup'
 *= require 'component'
 *= require 'sprites/icons'
 *= require_self
@@ -22,7 +24,6 @@ body {
 a { text-decoration: none;  }
 img { border: none; }
 i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
-
 
 .site-header {
   // @include zoom;
@@ -74,6 +75,7 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
         a { @include font(12px, #FFF); padding: 0 10px; }
         .opt { text-align: left; }
         .opt:hover { @include background(0px, #202020); }
+        .opt span.red { @include font(12px, #FF0000); font-weight: bold; }
       }
       em.notifies_count { 
         background: none repeat scroll 0 0 #EEE;
@@ -126,7 +128,7 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
           .action {
             // text-align: center;
             padding-left: 10px;
-            a { @include font(12px, #3E8BD9); }
+            a { @include font(12px); }
             i.icons { vertical-align: middle; }
           }
 
@@ -142,7 +144,7 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
         float: right;
         // text-align: right;
         margin-top: 10px;
-        a { margin-left: 10px; @include font(12px, #3E8BD9); }
+        a { margin-left: 10px; @include font(12px); }
       }
     }
   }

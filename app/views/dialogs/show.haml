@@ -1,8 +1,9 @@
-.user_dialog_show
-  = form_tag send_message_dialog_path(@dialog.id), :id => 'newMessageForm' do
+- content_for :header_js do
+  = javascript_include_tag 'dialog'
+
+.user_dialog_show.readDialog{ 'data-dialog_id' => @dialog.id }
+  = form_tag send_message_dialogs_path(:to_user_id => @dialog.from_user_id), :id => 'newMessageForm' do
     .new_message_form
-      / .notice
-      /   私信
       %textarea.form_text{ :name => 'content' }
       .tools
       %a.button.submit{ :href => 'javascript:;' } 回复 TA
@@ -10,15 +11,23 @@
   .message_list
     .title
       = "我 与 #{@dialog.from_user.login} 的私信"
+      %a.action{ :href => dialogs_path }
+        返回所有        
       %a.action
         = "共 #{@dialog.messages_count} 条"
+      
     .message
       - @messages.each do |message|
         .mode{ :class => current_user.id == message.sender_id ? 'right_mode' : 'left_mode' }
           .timeline
             3分钟之前
           .avatar
-            = image_tag 'demo.jpg', :size => '30x30'
+            - if current_user.id == message.sender_id
+              %a{ :href => user_path(current_user.id), :title => current_user.login }
+                = image_tag current_user.avatar.url(:s), :size => '30x30'
+            - else
+              %a{ :href => user_path( @dialog.from_user_id), :title => @dialog.from_user.login }
+                = image_tag @dialog.from_user.avatar.url(:s), :size => '30x30'
           .content
             %p
               = message.content

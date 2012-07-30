@@ -9,7 +9,6 @@ class Assistance
   field :assist_public, :type => Boolean, :default => true
   field :pictures, :type => Array, :default => []
   field :solved, :type => Boolean, :default => false
-  field :ask_to, :type => Array, :default => []
 
   field :helpers_count, :type => Integer, :default => 0
 
@@ -22,6 +21,8 @@ class Assistance
 
   has_many :assistance_helpers
   has_many :comments, :as => :commentable
+
+  default_scope desc(:created_at)
 
 
 end

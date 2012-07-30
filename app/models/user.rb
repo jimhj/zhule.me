@@ -18,7 +18,7 @@ class User
   field :assistances_count, :type => Integer, :default => 0
   field :helped_stuffs_count, :type => Integer, :default => 0
   field :notifications_count, :type => Integer, :default => 0
-  field :dialogs_count, :type => Integer, :default => 0
+  field :messages_count, :type => Integer, :default => 0
   field :followers_count, :type => Integer, :default => 0
   field :fans_count, :type => Integer, :default => 0
 

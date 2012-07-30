@@ -1,0 +1,9 @@
+@import 'base';
+
+.popUp {
+  @include font(12px);
+}
+.msgDom {
+  .notify { @include font(12px, #333); margin: 0px 0px 5px 0px; }
+  .notify span { font-weight: bold; }
+}

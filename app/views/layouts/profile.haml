@@ -4,7 +4,7 @@
     %title 助乐 - 帮助别人，快乐自己！
     = stylesheet_link_tag 'application', 'profile'
     = yield :header_css
-    = javascript_include_tag 'application'
+    = javascript_include_tag 'app', 'profile'
     = yield :header_js
     = csrf_meta_tags
     %meta{ :name => 'keywords', :content => '帮助别人，快乐自己' }

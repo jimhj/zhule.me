@@ -7,6 +7,7 @@ class Message
   field :content
   field :sender_id
   field :receiver_id
+  field :readed, :type => Boolean, :default => false
 
   embedded_in :dialog
   counter_cache :name => :dialog, :inverse_of => :messages
@@ -22,14 +23,13 @@ class Message
 
   def self.post(sender_id, receiver_id, content)
     return if sender_id == receiver_id
-    self.transaction do      
-      self_dialog = self.find_or_create_by(:from_user_id => sender_id, :to_user_id => receiver_id)
-      other_dialog = self.find_or_create_by(:from_user_id => receiver_id, :to_user_id => sender_id)
-      params = { :content => content, :sender_id => sender_id, :receiver_id => receiver_id }
-      message = self_dialog.messages.create(params)
-      other_dialog.messages.create(params)
-      message
-    end
+    self_dialog = Dialog.find_or_create_by(:from_user_id => sender_id, :to_user_id => receiver_id)
+    other_dialog = Dialog.find_or_create_by(:from_user_id => receiver_id, :to_user_id => sender_id)
+    params = { :content => content, :sender_id => sender_id, :receiver_id => receiver_id }
+    message = self_dialog.messages.create(params)
+    User.where(:_id => receiver_id).first.inc(:messages_count, 1)
+    other_dialog.messages.create(params)
+    message
   end
 
   after_create do
@@ -39,6 +39,8 @@ class Message
       :last_reply_content       => self.content,
       :updated_at               => self.created_at
     )
+
+
   end
 
 end

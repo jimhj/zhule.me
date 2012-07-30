@@ -28,7 +28,7 @@
         %em.num.red 112       
   .actions
     - if current_user != @user
-      %a.button.followBtn{ :href => 'javascript:;', :class => current_user.followed?(@user.id) ? 'gray' : '', 'data-user_id' => @user.id } + 加关注
+      %a.button.followBtn{ :href => 'javascript:;', :class => current_user.followed?(@user.id) ? 'gray' : '', 'data-user_id' => @user.id }= current_user.followed?(@user.id) ? '已关注' : '+ 加关注'
 
 .user_zl_list
   .zl_nav

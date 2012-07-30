@@ -35,9 +35,7 @@
           %a{ :href => user_path(help.user_id) }
             = image_tag help.user.avatar_url(:m), :size => '80x80'
           .message
-            %a{ :href => 'javascript:;' }
-              %i.icons.icons_mail
-              私信
+            = message_link_tag(help.user)
         .info
           %p
             %a.user_name{ :href => user_path(help.user_id) }= "#{help.user.login}:"

@@ -13,8 +13,12 @@ Zhule::Application.routes.draw do
   end
 
   resources :dialogs do
-    member do
+    collection do
       post :send_message
+    end
+
+    member do
+      post :read_messages
     end
   end
 

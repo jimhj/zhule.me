@@ -41,7 +41,18 @@ html { @include body_bg; }
   .notice { @include font(14px, #666666); margin: 5px 0px 10px; }
   .form_panel {
     @include zoom;
-    .bottom_tools { float: left; margin-top: 10px; a { @include font(12px); margin-right: 10px; } } 
+    .bottom_tools { 
+      float: left; margin-top: 10px; 
+      width: 80%;
+      .option {
+        display: block;
+        float: left; 
+        padding: 5px 5px; 
+        margin-right: 10px;  
+        a { @include font(12px); }      
+      }
+    } 
+
     textarea { width: 98%; }
     a.button { float: right; margin-top: 10px; }
   }
@@ -69,6 +80,7 @@ html { @include body_bg; }
       width: 88%;
       margin-left: 10px;
       .dialog_content { line-height: 22px; }
+      p.unread_count { @include font(12px, #FF0000); }
       .actions { margin-top: 5px; a { margin-left: 5px; } }
     }
   }
