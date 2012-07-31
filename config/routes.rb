@@ -27,10 +27,13 @@ Zhule::Application.routes.draw do
       get :joined
       post :join
     end
+
+    collection do
+      post :mark_as_helpful
+    end
   end
 
-  resources :comments, :only => [:create, :destroy]
-  
+  resources :comments, :only => [:create, :destroy]  
 
   scope 'settings' do
     match '/' => 'settings#index', :as => :settings, :via => [:get, :post]

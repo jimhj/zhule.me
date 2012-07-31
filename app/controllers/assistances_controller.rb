@@ -9,6 +9,7 @@ class AssistancesController < ApplicationController
   def show
     @assist = Assistance.where(:_id => params[:id]).first
     @user = @assist.user
+    @assist_helpers = @assist.assistance_helpers.includes(:user).limit(20)
     @comments = @assist.comments.includes(:user)
   end
 
@@ -31,6 +32,12 @@ class AssistancesController < ApplicationController
     respond_to do |format|
       format.js { render :text => { :success => assistance_helper.save }.to_json }
     end
+  end
+
+  def mark_as_helpful
+    assistance_helper = AssistanceHelper.where(:_id => params[:id]).first
+    assistance_helper.update_attribute(:helpful, true)
+    render :nothing => true
   end
   
 end

@@ -15,4 +15,8 @@ class AssistanceHelper
 
   validates_uniqueness_of :user_id, :scope => :assistance_id
 
+  before_save do
+    return false if self.user_id == self.assistance.user_id
+  end
+
 end

@@ -8,6 +8,12 @@ class UsersController < ApplicationController
 
   def show
     @user = User.where(:_id => params[:id]).first
+    if params[:type].blank?
+      @assistances = @user.assistances
+    elsif params[:type] == 'helpeds'
+      assistance_ids = @user.assistance_helpers.map(&:assistance_id)
+      @assistances = Assistance.where(:_id.in => assistance_ids).includes(:user)
+    end
   end
 
   def follow

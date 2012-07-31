@@ -3,6 +3,7 @@ Zhule.Assistance =
     this.__replyToAssist()
     this.__commentToAssist()
     this.__deleteComment()
+    this.__markAsHelpful()
 
   __replyToAssist : ->
     $('a.helpWhom').click ->
@@ -14,11 +15,15 @@ Zhule.Assistance =
         $helpForm.slideUp()
 
     $('.i_can_help a.submit').click ->
+      $this = $(this)
+      return if $this.is('.gray')
       $textarea = $(this).prev()
       assistance_id = $textarea.data('assistance_id')
       url = "/assistances/#{assistance_id}/join"
       content = $textarea.val()
-      if content.length > 0
+      if $.trim(content) == 0
+        Zhule.tips('先跟TA说的什么吧～')
+      else
         $.post(url, { content : content }, (data) ->
           if data.success
             window.location.reload()
@@ -56,6 +61,14 @@ Zhule.Assistance =
         dataType: 'json'
       .done (data) ->
         $this.parents('.comt_li').remove() if data.success
+
+  __markAsHelpful : ->
+    $('a.markAsHelpful').click ->
+      $this = $(this)
+      return if $this.is('.gray')
+      paramters = { id : $this.attr('data-help_id') } 
+      $.post '/assistances/mark_as_helpful', paramters, ->
+        $this.addClass('gray')
 
 $(document).ready ->
   Zhule.Assistance.init()

@@ -11,38 +11,44 @@
       %a{ :href => joined_assistance_path(@assist.id) }
         %i.icons.icons_person
         = "参与帮忙(#{@assist.helpers_count})"
-      %a{ :href => '#' }
+      %a{ :href => 'javascript:;' }
         %i.icons.icons_comt
-        评论(12)
+        = "评论(#{@assist.comments_count})"
       %a{ :href => '#' }
         %i.icons.icons_pencil
         编辑        
     .buttons
       - if current_user != @user
-        %a.button.helpWhom{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' } 帮她一把
+        %a.button.helpWhom{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' }
+          = current_user.helped?(@assist.id) ? '已提交帮助' : '帮她一把'
 
 .i_can_help    
   %textarea.form_text{ 'data-assistance_id' => @assist.id } 我能帮你：
-  %a.button.submit{ :href => 'javascript:;' } 发送
+  %a.button.submit{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' } 发送
 
 .participate
   .title
     这些人参与帮忙了
   .helper_list
-    - @helpers.each do |help|
-      .helper_single_line
-        .avatar
-          %a{ :href => user_path(help.user_id) }
-            = image_tag help.user.avatar_url(:m), :size => '80x80'
-          .message
-            = message_link_tag(help.user)
-        .info
-          %p
-            %a.user_name{ :href => user_path(help.user_id) }= "#{help.user.login}:"
-            = help.content          
-          .bottom_tools
-            .status
-              %span= help.created_at
-            .buttons
-              %a.button.green{ :href => 'javascript:;' } 对我有用
+    - if @helpers.blank?
+      %p{ :style => 'color: #999999;', :align => 'center' } 暂时还没有人帮TA...
+    - else
+      - @helpers.each do |help|
+        .helper_single_line
+          .avatar
+            %a{ :href => user_path(help.user_id) }
+              = image_tag help.user.avatar_url(:m), :size => '80x80'
+            .message
+              - if help.user_id != current_user.id
+                = message_link_tag(help.user)
+          .info
+            %p
+              %a.user_name{ :href => user_path(help.user_id) }= "#{help.user.login}:"
+              = help.content          
+            .bottom_tools
+              .status
+                %abbr.timeago{ :title => help.created_at }
+              - if current_user.id == @assist.user_id
+                .buttons
+                  %a.button.green.markAsHelpful{ :href => 'javascript:;', 'data-help_id' => help.id, :class => help.helpful ? 'gray' : '' } 对我有用
 
