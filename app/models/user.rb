@@ -26,8 +26,7 @@ class User
 
   has_many :assistances
   has_many :assistance_helpers
-  has_many :notifications
-
+  has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :user_follows
 
   validates :email, :presence => true, 
@@ -40,6 +39,7 @@ class User
   validates_presence_of :password
   validates_confirmation_of :password
 
+  attr_accessible :email, :login, :password, :password_confirmation
   attr_accessible :avatar, :avatar_cache
   mount_uploader :avatar, AvatarUploader
 

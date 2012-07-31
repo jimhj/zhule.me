@@ -33,9 +33,9 @@
 .user_zl_list
   .zl_nav
     %a{ :href => user_path(@user.id), :class => params[:type].blank? ? 'current' : '' }
-      她求助过的
+      TA求助过的
     %a{ :href => user_path(@user.id, :type => 'helpeds'), :class => params[:type] == 'helpeds' ? 'current' : '' }
-      她帮助过的
+      TA帮助过的
   .zl_list
     - @assistances.each do |assistance|
       .zl_li

@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   end
 
   def follow
-    follow = current_user.user_follows.build(:follower_id => params[:id])
-    render :text => { :success => follow.save }.to_json
+    follow = current_user.user_follows.create(:follower_id => params[:id])
+    render :text => { :success => true }.to_json
   end
 
   
