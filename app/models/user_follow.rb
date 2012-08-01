@@ -4,6 +4,7 @@ class UserFollow
   include Mongoid::Document
   include Mongoid::Timestamps  
   include Mongoid::CounterCache
+  include Mongoid::DelayedDocument
 
   belongs_to :user
   counter_cache :name => :user, :inverse_of => :followers
@@ -24,7 +25,12 @@ class UserFollow
 
   after_create do
     return false if user_id == follower_id
-    Notification::Follow.create :user_id => self.follower_id, :user_follow_id => self.id
+    UserFollow.perform_async(:send_follow_notification, self._id)
+  end
+
+  def self.send_follow_notification(user_follow_id)
+    user_follow = self.where(:_id => user_follow_id).first
+    Notification::Follow.create :user_id => user_follow.follower_id, :user_follow_id => user_follow.id
   end
 
 end

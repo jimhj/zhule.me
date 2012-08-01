@@ -3,6 +3,7 @@ class Comment
   include Mongoid::Document
   include Mongoid::Timestamps  
   include Mongoid::CounterCache
+  include Mongoid::DelayedDocument
 
   field :content
   belongs_to :commentable, :polymorphic => true
@@ -18,10 +19,19 @@ class Comment
 
   after_create do
     return false if self.user_id == self.commentable.user_id
-    Notification::AssistanceComment.create :user_id             => self.commentable.user_id, 
-                                           :commentable_id      => self.commentable_id,
-                                           :commentable_type    => self.commentable_type,
-                                           :comment_id          => self._id
-  end  
+    Comment.perform_async(:send_notification, self._id)
+  end
+
+  def self.send_notification(comment_id)
+    comment = self.where(:_id => comment_id).first
+    Notification::AssistanceComment.create :user_id             => comment.commentable.user_id, 
+                                           :commentable_id      => comment.commentable_id,
+                                           :commentable_type    => comment.commentable_type,
+                                           :comment_id          => comment._id    
+  end
+
+  after_destroy do
+    Notification::AssistanceComment.destroy_all(:comment_id => self._id)
+  end
 
 end
