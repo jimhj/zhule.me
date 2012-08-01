@@ -58,6 +58,40 @@ html { @include body_bg; }
   }
 }
 
+/* User Notifications */
+
+.user_notifications {
+  @include background(5px);
+  @include font(12px);
+  padding: 5px 5px;
+  a { @include font(12px, #3E8BD9); }
+  span.new_notice { @include font(12px, #FF0000); font-weight: bold; }
+  .notification {
+    @include zoom;
+    width: 96%;
+    padding: 7px 5px;
+    border-bottom: $g-border;
+    .icon {
+      float: left;
+      // text-align: center;
+    }
+    .info {
+      float: left;
+      margin-left: 10px;
+      width: 88%;
+      .detail {
+        
+        .body { margin: 5px 0px; @include font(12px, #333); }
+      }
+    }
+
+    .info.no_icon {
+      margin-left: 0px;
+      width: 98%;      
+    }
+  }
+} 
+
 /* User Dialogs */
 .user_dialogs {
   @include background(5px);

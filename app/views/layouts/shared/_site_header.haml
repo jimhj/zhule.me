@@ -17,7 +17,7 @@
             消息
           .dropdown-list
             .opt
-              %a{ :href => dialogs_path }
+              %a{ :href => notifications_path }
                 系统通知
                 %span{ :class => current_user.notifications_count.zero? ? '' : 'red' }= current_user.notifications_count
             .opt

@@ -33,6 +33,7 @@ Zhule::Application.routes.draw do
     end
   end
 
+  resources :notifications, :only => [:index, :destroy]
   resources :comments, :only => [:create, :destroy]  
 
   scope 'settings' do

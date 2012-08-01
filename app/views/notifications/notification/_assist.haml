@@ -1,0 +1,19 @@
+- assistance = notification.assistance
+- assistance_helper = notification.assistance_helper
+- user = assistance.user
+.notification
+  .icon
+    %a{ :href => user_path(user.id), :title => user.login }
+      = image_tag user.avatar_url(:c), :size => '50x50'          
+  .info
+    .detail
+      .notify_type
+        %span.new_notice 新！
+        %a{ :href => user_path(user.id) }= user.login 
+        认为你对TA的求助
+        %a{ :href => assistance_path(assistance.id) }
+          = assistance.content
+        很有帮助
+      .body
+    .bottom_tools
+      %abbr.timeago{ :title => notification.created_at }

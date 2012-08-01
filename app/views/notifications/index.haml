@@ -1,0 +1,8 @@
+.user_notifications
+  .title
+    系统通知
+  .notification_list
+    - @notifications.each do |notification|
+      = render :partial => "notifications/#{notification.class.name.underscore}", :locals => { :notification => notification } 
+  .pagination         
+

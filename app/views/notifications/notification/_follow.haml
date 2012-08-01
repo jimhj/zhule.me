@@ -1,0 +1,14 @@
+- user = notification.user_follow.user
+.notification
+  .icon
+    %a{ :href => user_path(user.id), :title => user.login }
+      = image_tag user.avatar_url(:c), :size => '50x50'          
+  .info
+    .detail
+      .notify_type
+        %span.new_notice 新！
+        %a{ :href => user_path(user.id) }= user.login 
+        关注了你 
+      .body
+    .bottom_tools
+      %abbr.timeago{ :title => notification.created_at }

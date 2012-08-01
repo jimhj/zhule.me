@@ -15,8 +15,25 @@ class AssistanceHelper
 
   validates_uniqueness_of :user_id, :scope => :assistance_id
 
-  before_save do
+  index :user_id => 1
+  index :assistance_id => 1
+
+  before_create do
     return false if self.user_id == self.assistance.user_id
+  end
+
+  after_create do
+    Notification::JoinAssistance.create :user_id                 => self.assistance.user_id, 
+                                        :assistance_id           => self.assistance_id,
+                                        :assistance_helper_id    => self._id
+  end
+
+  after_save do
+    if self.helpful
+      Notification::Assist.create :user_id                 => self.user_id, 
+                                  :assistance_id           => self.assistance_id,
+                                  :assistance_helper_id    => self._id      
+    end
   end
 
 end

@@ -4,6 +4,7 @@ class Assistance
   include Mongoid::Timestamps
   include Mongoid::CounterCache
 
+  field :title
   field :content
   field :address, :type => String, :default => ''
   field :assist_public, :type => Boolean, :default => true

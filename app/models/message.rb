@@ -17,7 +17,7 @@ class Message
 
   validates :content, :presence => true, :length => { :maximum => 140 }
 
-  index :receiver_id
+  index :receiver_id => 1
   index :created_at => -1
 
   default_scope desc('created_at')

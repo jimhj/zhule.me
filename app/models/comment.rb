@@ -16,4 +16,12 @@ class Comment
   index :created_at => -1
   index :user_id => 1
 
+  after_create do
+    return false if self.user_id == self.commentable.user_id
+    Notification::AssistanceComment.create :user_id             => self.commentable.user_id, 
+                                           :commentable_id      => self.commentable_id,
+                                           :commentable_type    => self.commentable_type,
+                                           :comment_id          => self._id
+  end  
+
 end
