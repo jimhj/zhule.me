@@ -5,7 +5,7 @@ module Mongoid
 
     included do
       include Sidekiq::Worker
-      # sidekiq_options :retry => false
+      sidekiq_options :retry => false
       sidekiq_options :verbose => true
       sidekiq_options :concurrency => 5
     end

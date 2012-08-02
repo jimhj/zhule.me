@@ -3,6 +3,7 @@ class Message
   include Mongoid::Document
   include Mongoid::Timestamps::Created  
   include Mongoid::CounterCache
+  include Mongoid::DelayedDocument
 
   field :content
   field :sender_id
@@ -24,13 +25,16 @@ class Message
 
   def self.post(sender_id, receiver_id, content)
     return if sender_id == receiver_id
-    self_dialog = Dialog.find_or_create_by(:from_user_id => sender_id, :to_user_id => receiver_id)
     other_dialog = Dialog.find_or_create_by(:from_user_id => receiver_id, :to_user_id => sender_id)
     params = { :content => content, :sender_id => sender_id, :receiver_id => receiver_id }
-    message = self_dialog.messages.create(params)
-    User.where(:_id => receiver_id).first.inc(:messages_count, 1)
     other_dialog.messages.create(params)
-    message
+    self.perform_async(:send_message_to_self, params)
+  end
+
+  def self.send_message_to_self(opts)
+    self_dialog = Dialog.find_or_create_by(:from_user_id => opts['sender_id'], :to_user_id => opts['receiver_id'])
+    self_dialog.messages.create(opts)
+    User.where(:_id => opts['receiver_id']).first.inc(:messages_count, 1)    
   end
 
   after_create do

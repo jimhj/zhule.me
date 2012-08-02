@@ -22,6 +22,8 @@ gem "settingslogic", "~> 2.0.6"
 # Queue
 gem 'sidekiq', '~> 2.1.0'
 
+# Paginate
+gem 'will_paginate', '~> 3.0.3'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'

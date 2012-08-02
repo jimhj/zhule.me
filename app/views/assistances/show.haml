@@ -46,9 +46,11 @@
     - if @comments.blank?
       %p{ :style => 'margin:10px 10px;' } 暂时没有任何评论...
     - else
-      - @comments.each do |comment|
-        = render :partial => 'comments/comment', :locals => { :comment => comment }
+      = render :partial => 'comments/comment', :collection => @comments
+  .pagination
+    = will_paginate @comments
   .new_comt_form
     %textarea.form_text
     %a.button.postComment{ :href => 'javascript:;', 'data-commentable_id' => @assist.id, 'data-commentable_type' => 'Assistance' } 评论
+
 
