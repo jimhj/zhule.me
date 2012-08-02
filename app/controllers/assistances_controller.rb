@@ -10,7 +10,7 @@ class AssistancesController < ApplicationController
     @assist = Assistance.where(:_id => params[:id]).first
     @user = @assist.user
     @assist_helpers = @assist.assistance_helpers.includes(:user).limit(20)
-    @comments = @assist.comments.includes(:user).paginate(:page => params[:page], :per_page => 5)
+    @comments = @assist.comments.includes(:user).paginate(:page => params[:page], :per_page => 20)
   end
 
   def create

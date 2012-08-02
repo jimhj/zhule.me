@@ -122,3 +122,71 @@ textarea.form_text {
 }
 
 // Navigation
+.digg_pagination {
+  cursor: default;
+  /* self-clearing method: */ 
+  text-align: center;
+
+}
+
+.digg_pagination a, .digg_pagination span, .digg_pagination em {
+  padding: 0.2em 0.5em;
+  display: block;
+  float: left;
+  margin-right: 5px; 
+}
+
+.digg_pagination .disabled {
+  color: #999999;
+  border: 1px solid #CCC; 
+}
+
+.digg_pagination .current {
+  font-style: normal;
+  font-weight: bold;
+  background: #3E8BD9;
+  color: white;
+  border: 1px solid #147DCD;
+}
+
+.digg_pagination a {
+  text-decoration: none;
+  color: #3E8BD9;
+  border: 1px solid #147DCD;
+}
+
+.digg_pagination a:hover, .digg_pagination a:focus {
+  color: #3B5998;
+  border: 1px solid #147DCD;
+}
+
+.digg_pagination .page_info {
+  background: #2e6ab1;
+  color: white;
+  padding: 0.4em 0.6em;
+  width: 22em;
+  margin-bottom: 0.3em;
+  text-align: center; 
+}
+
+.digg_pagination .page_info b {
+  color: #000033;
+  background: #6aa6ed;
+  padding: 0.1em 0.25em; 
+}
+
+.digg_pagination:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden; 
+}
+
+* html .digg_pagination {
+  height: 1%; 
+}
+
+*:first-child + html .digg_pagination {
+  overflow: hidden; 
+}

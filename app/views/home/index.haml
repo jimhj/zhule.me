@@ -53,5 +53,6 @@
                 = "帮忙的(#{assistance.helpers_count})"
               %a{ :href => assistance_path(assistance.id) }
                 %i.icons.icons_comt
-                = "评论(#{assistance.comments_count})"      
+                = "评论(#{assistance.comments_count})"   
+      = will_paginate(@assistances, :class => 'digg_pagination')   
 

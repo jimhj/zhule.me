@@ -16,6 +16,7 @@ class HomeController < ApplicationController
       assistance_ids = @user.assistance_helpers.map(&:assistance_id)
       @assistances = Assistance.where(:_id.in => assistance_ids).includes(:user)
     end
+    @assistances = @assistances.paginate(:page => params[:page], :per_page => 8)
   end
   
 end

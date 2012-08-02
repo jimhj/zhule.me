@@ -23,6 +23,7 @@ class Message
 
   default_scope desc('created_at')
 
+  # A little confused.
   def self.post(sender_id, receiver_id, content)
     return if sender_id == receiver_id
     other_dialog = Dialog.find_or_create_by(:from_user_id => receiver_id, :to_user_id => sender_id)

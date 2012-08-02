@@ -226,6 +226,7 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
 
   .comt_list {
     @include font(12px);
+    margin-bottom: 5px;
     .comt_li {
       @include zoom;
       width: 100%;
