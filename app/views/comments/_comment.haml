@@ -9,6 +9,6 @@
       .info_right
         - if current_user.id == comment.user_id || current_user.id == comment.commentable.user_id
           %a.deleteComment{ :href => 'javascript:;', 'data-comment_id' => comment.id } 删除
-        %a.reply{ :href => '#' } 回复
+        / %a.reply{ :href => '#' } 回复
     %p.content
       = comment.content

@@ -9,43 +9,67 @@ Zhule.Home.Assistance =
 
   __newAssistance : ->
     $form = $('#newAssistance')
-    $address = $('<input type="text" class="" style="width: 160px"/>')
-    $fileInput = $('<input type="file" />')
-    dialog1 = dialog2 = null
-    # [addr="北京"][/addr]
-    # dialog2 = null
+    
 
-    $form.find('a.location').click ->
+    $('a.location').click ->
       $this = $(this)
-      dialog2.close() if dialog2?
-      dialog1 = art.dialog
-        id: 'postAssist321'
-        title: '填写希望获得帮助的地点'
-        content: $address[0]
-        follow: $this[0]
-        drag: false
-        resize: false
-        ok: ->
-          if $.trim($address.val()).length > 1 
-            $this.find('span').text($address.val())
+      $attach = $('.attachment_panel.address')
+      if $attach.is(':hidden')
+        $attach.find('input').val $('.attachment_panel.address').find('input').val()
+        $attach.show()
+      else
+        $attach.hide()
 
-    $form.find('a.uploadImage').click ->
+    $('a.uploadImage').click ->
+      $attach = $('.attachment_panel.photo')
+      if $attach.is(':hidden')
+        $attach.show()
+      else
+        $attach.hide()
+
+    $('.attachment_panel.address').find('a.submit').click ->
       $this = $(this)
-      dialog1.close() if dialog1?
-      dialog2 = art.dialog
-        id: 'postAssist123'
-        title: '上传一张图片'
-        content: $fileInput[0]
-        follow: $this[0]
-        drag: false
-        resize: false         
+      address = $this.prev('input').val()
+      if $.trim(address).length > 0 && $.trim(address).length < 20
+        $('a.location').find('span').text(address)
+        $this.closest('.attachment_panel').hide()
+
+    $('.attachment_panel.photo').find('a.submit').click ->
+      $this = $(this)
+      $file = $this.prev('input')
+      if $file.val()?
+        $this.parents('form').ajaxSubmit(
+          dataType: 'json'
+          beforeSend: ->
+            $('a.uploadImage').find('span').text('正在上传...')
+          success: (data) ->
+            if data.success
+              $('a.uploadImage').find('span').text(data.photo_name)
+              $('#newAssistance').find('textarea').data('attachment_id', data.id)
+              $this.closest('.attachment_panel').hide()
+            else
+              $('a.uploadImage').find('span').text('上传图片')
+        )
+
+    $('a.button.gray').click ->
+      $(this).closest('.attachment_panel').hide()
+      if $(this).closest('.attachment_panel').is('.address')
+        $('a.location').find('span').text('地点')
+        $('.attachment_panel.address').find('input').val('')
+      else
+        $('a.uploadImage').find('span').text('上传图片')
+        $('#newAssistance').find('textarea').data('attachment_id', '')
 
     $form.find('a.submit').click -> 
+      $this = $(this)
       content = $form.find('textarea').val()
       if content.length < 20
         Zhule.tips('字数是不是太少啦？')
       else
-        $.post '/assistances', content : content, (data) ->
+        address = $('.attachment_panel.address').find('input').val()
+        attachment_id = $form.find('textarea').data('attachment_id')
+        paramters = { content : content, address : address, attachment_id : attachment_id }
+        $.post '/assistances', paramters, (data) ->
           if data.success
             Zhule.tips('发表求助成功！')
             # window.location = window.location

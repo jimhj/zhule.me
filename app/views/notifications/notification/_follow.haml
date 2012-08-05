@@ -6,7 +6,8 @@
   .info
     .detail
       .notify_type
-        %span.new_notice 新！
+        - unless notification.readed?
+          %span.new_notice 新！
         %a{ :href => user_path(user.id) }= user.login 
         关注了你 
       .body

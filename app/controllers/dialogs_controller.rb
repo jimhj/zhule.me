@@ -12,7 +12,7 @@ class DialogsController < ApplicationController
     unless @dialog.to_user_id == current_user.id
       return
     end
-    @messages = @dialog.messages
+    @messages = @dialog.messages.includes(:from_user).paginate(:page => params[:page], :per_page => 10)
   end
 
   def read_messages

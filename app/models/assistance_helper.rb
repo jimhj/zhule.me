@@ -16,8 +16,15 @@ class AssistanceHelper
 
   validates_uniqueness_of :user_id, :scope => :assistance_id
 
+  scope :helpful_assistance, where(:helpful => true).desc('created_at updated_at')
+
   index :user_id => 1
   index :assistance_id => 1
+  index :helpful => 1
+
+  def assistance_user
+    
+  end
 
   before_create do
     return false if self.user_id == self.assistance.user_id

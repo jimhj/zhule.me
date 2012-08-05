@@ -4,6 +4,7 @@ Zhule.Assistance =
     this.__commentToAssist()
     this.__deleteComment()
     this.__markAsHelpful()
+    this.__enLargePhoto()
 
   __replyToAssist : ->
     $('a.helpWhom').click ->
@@ -69,6 +70,43 @@ Zhule.Assistance =
       paramters = { id : $this.attr('data-help_id') } 
       $.post '/assistances/mark_as_helpful', paramters, ->
         $this.addClass('gray')
+
+  __enLargePhoto : ->
+    $loading = $('<img src="/assets/loading.gif"/>')
+
+    resizeImg = (img) -> 
+      w = img.width
+      h = img.height
+      $img = $(img).addClass('large')
+
+      if w > 570
+        $img.css('width', 570).css('height', 570 * h / w)
+      $img.addClass('large')
+      return $img
+
+    $('.pics').on 'click', 'img', ->
+      $this = $(this)
+      # $showImgPanel = $this.parent()
+      if $this.is('.small')
+        # $this.removeClass('small')
+        $this.hide().after($loading)
+        img = new Image()
+        img.src = $this.data('large_url')
+
+        if img.complete
+          $loading.remove()
+          $img = resizeImg(img)
+          $this.after($img)
+        else
+          img.onload = ->
+            $loading.remove()
+            $img = resizeImg(img)
+            $this.after($img)
+            img.onload = null           
+      else
+        $('img.small').show()
+        $this.remove()
+
 
 $(document).ready ->
   Zhule.Assistance.init()

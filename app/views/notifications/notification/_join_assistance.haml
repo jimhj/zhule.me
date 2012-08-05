@@ -8,7 +8,8 @@
   .info
     .detail
       .notify_type
-        %span.new_notice 新！
+        - unless notification.readed?
+          %span.new_notice 新！
         %a{ :href => user_path(user.id) }= user.login 
         表示对你的求助
         %a{ :href => assistance_path(assistance.id) }

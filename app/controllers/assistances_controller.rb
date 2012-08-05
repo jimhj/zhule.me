@@ -15,9 +15,17 @@ class AssistancesController < ApplicationController
 
   def create
     @user = current_user
-    assist = @user.assistances.build(:content => params[:content])
-    respond_to do |format|
-      format.js { render :text => { :success => assist.save }.to_json }
+    begin
+      assist = @user.assistances.build(:content => params[:content], :address => params[:address])
+      if !params[:attachment_id].blank? && assist.save
+        attachment = Attachment.where(:_id => params[:attachment_id]).first
+        attachment.update_attributes(:attachmentable_type => 'Assistance', :attachmentable_id => assist.id)
+      end
+      respond_to do |format|
+        format.js { render :text => { :success => true }.to_json }
+      end
+    rescue
+      render :text => { :success => false }.to_json
     end
   end
 
@@ -32,6 +40,11 @@ class AssistancesController < ApplicationController
     respond_to do |format|
       format.js { render :text => { :success => assistance_helper.save }.to_json }
     end
+  end
+
+  def upload_photo
+    photo = current_user.attachments.build(:photo => params[:photo])
+    render :text => { :success => photo.save, :id => photo.id, :photo_name => params[:photo].original_filename }.to_json
   end
 
   def mark_as_helpful

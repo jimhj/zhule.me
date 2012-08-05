@@ -13,16 +13,17 @@ class Assistance
 
   field :helpers_count, :type => Integer, :default => 0
   field :comments_count, :type => Integer, :default => 0
-
-  index :user_id => 1
-
+  
   validates_presence_of :content
 
   belongs_to :user, :inverse_of => :assistances
   counter_cache :name => :user, :inverse_of => :assistances
 
+  index :user_id => 1
+
   has_many :assistance_helpers
   has_many :comments, :as => :commentable
+  has_many :attachments, :as => :attachmentable
 
   default_scope desc(:created_at)
 

@@ -7,21 +7,19 @@
         %span 助乐
         是一个基于互相帮助的小微社区，你可以在这里尝试把你的愿望，困难或者想法说出来让大家一起帮你，或者你也可以使用你的能力和爱心，
         去帮助需要帮助的人，同时获得快乐。
-    - 3.times do
+    - @assistances.each do |assistance|
       .recommand
         .avatar
-          = image_tag 'demo.jpg', :size => '80x80'
+          = image_tag assistance.user.avatar_url(:m), :size => '80x80'
           / .addr
           /   广东 广州
         .seekhelp
           
-          %p.detail
-            %a.user_name 李国强w-123: 
-            找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗,愿意呀！找一个人帮我看愿意呀！找一个人帮我看,
-            愿意呀！找一个人帮我看愿意呀！找一个人帮我看个人帮我看狗狗
+          %p.detail{ :title => assistance.content }
+            %a.user_name{ :href => user_path(assistance.user_id) }= "#{assistance.user.login}:" 
+            = assistance.content.truncate(100)
         .tools
-          / %a 已有 65 人 打算帮她
-          %a.button 去帮她
+          %a.button{ :href => assistance_path(assistance.id) } 去帮她
   .login-form
     = form_tag sign_in_path, :id => 'loginForm' do
       %p.register

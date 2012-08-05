@@ -4,11 +4,12 @@
   .user_info
     .user_name
       %span= @user.login
+      - if current_user != @user
+        = message_link_tag(@user, :link_text => '')   
     .region
       %span= @user.address.blank? ? '未填写' : @user.address
     .hearts{ :title => '爱心指数' }
-      - 4.times do
-        %i.icons.icons_heart
+      = user_hearts_tag(@user)
     .pages
       %p
         签名：
@@ -17,15 +18,16 @@
         主页：
         %a{ :href => '#' } http://www.123.com
     .achievement
-      %a{ :href => '#' }
-        帮助过
-        %em.num 10
-      %a{ :href => '#' }
-        求助过
-        %em.num.green 10
-      %a{ :href => '#' }
-        未解决
-        %em.num.red 112       
+      / %a{ :href => url_for(:type => 'helpeds') }
+      /   帮助过
+      /   = @user.helped_stuffs_count
+      / %a{ :href => url_for }
+      /   求助过
+      /   = @user.assistances_count
+      / %a{ :href => '#' }
+      /   未解决
+      /   %em.num.red 112
+
   .actions
     - if current_user != @user
       %a.button.followBtn{ :href => 'javascript:;', :class => current_user.followed?(@user.id) ? 'gray' : '', 'data-user_id' => @user.id }= current_user.followed?(@user.id) ? '已关注' : '+ 加关注'
@@ -33,29 +35,32 @@
 .user_zl_list
   .zl_nav
     %a{ :href => user_path(@user.id), :class => params[:type].blank? ? 'current' : '' }
-      TA求助过的
+      = "TA求助过的(#{@user.assistances_count})"
     %a{ :href => user_path(@user.id, :type => 'helpeds'), :class => params[:type] == 'helpeds' ? 'current' : '' }
-      TA帮助过的
+      = "TA帮助过的(#{@user.helped_stuffs_count})"
   .zl_list
-    - @assistances.each do |assistance|
-      .zl_li
-        .detail
-          .avatar
-            %a
-              = image_tag assistance.user.avatar_url(:m), :size => '80x80'
-            .action
-              - if current_user != assistance.user
-                = message_link_tag(assistance.user) 
-          .content
-            %a.user_name= "#{assistance.user.login}:"
-            = assistance.content
-        .status
-          %abbr.timeago{ :title => assistance.created_at }
-          %a{ :href => assistance_path(assistance.id) }
-            %i.icons.icons_person
-            = "帮忙的(#{assistance.helpers_count})"
-          %a{ :href => assistance_path(assistance.id) }
-            %i.icons.icons_comt
-            = "评论(#{assistance.comments_count})"   
-                   
-  .pagination
+    - if @assistances.blank?
+      %p{ :style => 'margin: 10px auto;' } 
+        暂时没有数据... 
+    - else 
+      - @assistances.each do |assistance|
+        .zl_li
+          .detail
+            .avatar
+              %a
+                = image_tag assistance.user.avatar_url(:m), :size => '80x80'
+              .action
+                - if current_user != assistance.user
+                  = message_link_tag(assistance.user) 
+            .content
+              %a.user_name= "#{assistance.user.login}:"
+              = assistance.content
+          .status
+            %abbr.timeago{ :title => assistance.created_at }
+            %a{ :href => assistance_path(assistance.id) }
+              %i.icons.icons_person
+              = "帮忙(#{assistance.helpers_count})"
+            %a{ :href => assistance_path(assistance.id) }
+              %i.icons.icons_comt
+              = "评论(#{assistance.comments_count})"   
+    = will_paginate(@assistances, :class => 'digg_pagination')       

@@ -137,6 +137,7 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
           float: left;
           width: 82%;
           a.user_name { @include font(12px, #3B5998); font-weight: bold; }
+          .pics { margin-top: 10px; margin-left: 10px; }
         }
       }
       .status { 
@@ -161,7 +162,7 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
     .help_li {
       margin-bottom: 8px;
       img { vertical-align: bottom; margin-right: 3px; }
-      a.user_name { @include font(14px, #3E8BD9); }
+      a { @include font(12px, #3E8BD9); }
     } 
   }
 } 
@@ -199,7 +200,7 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
         width: 230px;
         .user_name  a { @include font(12px, #3E8BD9); font-weight: bold; }
         .user_name  a.action { @include font(12px, #3E8BD9); font-weight: normal; margin-left: 10px; } 
-        .wants { @include font; margin-top: 2px; line-height: 18px; }
+        .wants { @include font; margin-top: 2px; line-height: 18px; a { @include font(12px); } }
       }
     }
 

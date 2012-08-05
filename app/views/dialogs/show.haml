@@ -32,3 +32,4 @@
             %p
               = message.content
               / %a{ :href => '#' } 删除
+      = will_paginate @messages, :class => 'digg_pagination'

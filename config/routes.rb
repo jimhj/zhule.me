@@ -30,6 +30,7 @@ Zhule::Application.routes.draw do
 
     collection do
       post :mark_as_helpful
+      post :upload_photo
     end
   end
 

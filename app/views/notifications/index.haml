@@ -4,5 +4,5 @@
   .notification_list
     - @notifications.each do |notification|
       = render :partial => "notifications/#{notification.class.name.underscore}", :locals => { :notification => notification } 
-  .pagination         
+  = will_paginate(@notifications, :class => 'digg_pagination')         
 

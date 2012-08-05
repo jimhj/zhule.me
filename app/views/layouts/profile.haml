@@ -29,30 +29,30 @@
           .help_them
             .title
               帮帮他们吧
-              %a.action 更多
+              %a.action{ :href => home_path } 更多
             .ask_for_help
-              - 4.times do
+              - Assistance.includes(:user).limit(10).sample(5).each do |assistance|
                 .help_li
-                  .avatar
-                    = image_tag 'demo.jpg', :size => '50x50'
+                  .avatar{ :title => assistance.user.login }
+                    = image_tag assistance.user.avatar_url(:c), :size => '50x50'
                   .summary
                     .user_name
-                      %a{ :href => '#' } xiaohua12
-                      %a.action{ :href => '#' }
-                        %i.icons.icons_person
-                        帮她
+                      %a{ :href => user_path(assistance.user_id), :title => assistance.user.login }= assistance.user.login
+                      / %a.action{ :href => '#' }
+                      /   %i.icons.icons_person
+                      /   帮她
                     .wants
-                      找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗,愿意
-                      找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗,愿意
+                      %a{ :href => assistance_path(assistance.id), :title => assistance.content }
+                        = assistance.content.truncate(50)
 
           .talent
             .title
               热心达人
               %a.action 更多
             .talent_list
-              - 12.times do
-                %a{ :href => '#', :title => '热心达人' }
-                  = image_tag 'demo.jpg', :size => '50x50'
+              - User.limit(30).sample(15).each do |user|
+                %a{ :href => user_path(user.id), :title => user.login }
+                  = image_tag user.avatar_url(:c), :size => '50x50'
 
 
     = render 'layouts/shared/site_footer'

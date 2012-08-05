@@ -11,15 +11,15 @@
             = image_tag current_user.avatar_url(:s), :size => '15x15'
             = current_user.login
         .options
-          - total_count = current_user.notifications_count + current_user.messages_count
-          %a.notify{ :href => 'javascript:;' }
+          - total_count = current_user.unread_notifications_count + current_user.messages_count
+          %a.notify{ :href => notifications_path }
             %em.notifies_count{ :class => total_count.zero? ? '' : 'red' }= total_count
             消息
           .dropdown-list
             .opt
               %a{ :href => notifications_path }
                 系统通知
-                %span{ :class => current_user.notifications_count.zero? ? '' : 'red' }= current_user.notifications_count
+                %span{ :class => current_user.unread_notifications_count.zero? ? '' : 'red' }= current_user.unread_notifications_count
             .opt
               %a{ :href => dialogs_path } 
                 私信

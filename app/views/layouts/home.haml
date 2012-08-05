@@ -20,47 +20,47 @@
           = yield                                                                                        
         .right-container
           .achievement
-            %p
+            %p{ :title => '爱心指数' }
               %span
                 我的爱心指数：
-              - 3.times do
-                %i.icons.icons_heart
+              = user_hearts_tag(current_user)
             %p
               %span
                 帮助过：
               %a{ :href => home_path(:type => 'helped') }
-                %em= current_user.helped_stuffs_count
+                = current_user.helped_stuffs_count
             %p
               %span
                 求助过：
               %a{ :href => home_path(:type => 'assistances') }
-                %em= current_user.assistances_count
+                = current_user.assistances_count
             %p
               %span
                 关注的用户数：
-              %a{ :href => home_path }
-                %em= current_user.followers_count
+              %a{ :href => home_path(:type => 'followed') }
+                = current_user.followers_count
 
           .latest
             .title
               正在发生的
               %a.action 更多
             .help_list
-              - 6.times do
+              - AssistanceHelper.limit(15).includes(:user, :assistance).sample(10).each do |assistance_helper|
                 .help_li
-                  = image_tag 'demo2.jpg', :size => '20x20'
-                  %a.user_name{ :href => '#' } 321小星星
+                  %a.user_name{ :href => user_path(assistance_helper.user.id), :title => assistance_helper.user.login }= assistance_helper.user.login
                   帮助了
-                  = image_tag 'demo.jpg', :size => '20x20'
-                  %a.user_name{ :href => '#' } heiying3
+                  %a.user_name{ :href => user_path(assistance_helper.assistance.user_id) }= assistance_helper.assistance.user.login
+                  的
+                  %a{ :href => assistance_path(assistance_helper.assistance_id), :title => assistance_helper.assistance.content }
+                    = assistance_helper.assistance.content.truncate(13)
           .talent
             .title
               热心达人
               %a.action 更多
             .talent_list
-              - 12.times do
-                %a{ :href => '#', :title => '热心达人' }
-                  = image_tag 'demo.jpg', :size => '50x50'
+              - User.limit(30).sample(15).each do |user|
+                %a{ :href => user_path(user.id), :title => user.login }
+                  = image_tag user.avatar_url(:c), :size => '50x50'
                     
 
     = render 'layouts/shared/site_footer'

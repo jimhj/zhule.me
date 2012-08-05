@@ -29,6 +29,10 @@ html { @include body_bg; }
         .avatar { 
           float: left;
           img { border: 1px solid #FFF; }
+          .message {
+            text-align: center;
+            a { @include font(12px); }
+          }
         }
         .info {
           float: left;
@@ -51,8 +55,14 @@ html { @include body_bg; }
     @include font(14px);
     padding: 10px 10px;
     border: 1px solid #EFF6FC;
-    line-height: 24px;    
+    line-height: 24px;
+    .pics {
+      margin-top: 10px;
+      img.small { cursor:image-url("big.cur"), pointer; height:auto; width:auto; }
+      img.large { cursor:image-url("small.cur"), pointer; height:auto; width:auto; }
+    } 
   }
+
   .tools {
     @include font(12px);
     @include zoom;

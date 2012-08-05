@@ -28,6 +28,7 @@ class User
   has_many :assistance_helpers
   has_many :notifications, :class_name => 'Notification::Base', :dependent => :delete
   has_many :user_follows
+  has_many :attachments
 
   validates :email, :presence => true, 
                     :uniqueness => true,
@@ -68,6 +69,21 @@ class User
 
   def followed?(user_id)
     self.user_follows.find_by(:follower_id => user_id).present?
+  end
+
+  def read_notifications(notifications)
+    unread_ids = notifications.find_all{ |notification| !notification.readed? }.map(&:_id)
+    if unread_ids.any?
+      Notification::Base.where({
+        :user_id => self.id,
+        :_id.in  => unread_ids,
+        :readed    => false
+      }).update_all(:readed => true)
+    end
+  end
+
+  def unread_notifications_count
+    self.notifications.where(:readed => false).count
   end
 
   class << self

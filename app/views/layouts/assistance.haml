@@ -21,15 +21,14 @@
         .right-container
           .user_info
             .avatar
-              %a{ :href => '#' }
+              %a{ :href => user_path(@user.id) }
                 = image_tag @user.avatar_url(:m), :size => '80x80'
               .message
-                %a{ :href => '#' }
-                  %i.icons.icons_mail
-                  私信
+                - if current_user != @user
+                  = message_link_tag(@user)
             .info
               .user_name
-                %a{ :href => '#' }= @user.login
+                %a{ :href => user_path(@user.id) }= @user.login
               .address
                 = @user.address
               .signature
@@ -37,22 +36,22 @@
                                 
           .help_them
             .title
-              她的其他求助
-              %a.action 更多
+              TA的其他求助
+              %a.action{ :href => user_path(@user.id) } 更多
             .ask_for_help
-              - 4.times do
+              - @user.assistances.sample(5).each do |assistance|
                 .help_li
                   .avatar
-                    = image_tag 'demo.jpg', :size => '50x50'
+                    = image_tag @user.avatar_url(:c), :size => '50x50'
                   .summary
                     .user_name
-                      %a{ :href => '#' } xiaohua12
-                      %a.action{ :href => '#' }
-                        %i.icons.icons_person
-                        帮她
+                      %a{ :href => user_path(@user.id) }= @user.login
+                      / %a.action{ :href => '#' }
+                      /   %i.icons.icons_person
+                      /   帮她
                     .wants
-                      找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗,愿意
-                      找一个人帮我看狗狗, 谁愿意呀！找一个人帮我看狗狗,愿意
+                      %a{ :href => assistance_path(assistance.id), :title => assistance.content }
+                        = assistance.content.truncate(50)
 
                     
 

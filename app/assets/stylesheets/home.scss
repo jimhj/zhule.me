@@ -22,10 +22,11 @@ html { @include body_bg; }
       overflow: hidden;
 
       .achievement {
-        @include font(14px);
+        @include font(12px);
         @include background(5px);
+        a { @include font(12px, #3E8BD9); font-weight: bold; }
         padding: 5px 5px;
-        p { padding: 8px 5px; cursor: default; }
+        p { padding: 4px 5px; cursor: default; }
         p:hover { @include background(5px, #FFF); } 
       }    
     }
@@ -56,6 +57,20 @@ html { @include body_bg; }
     textarea { width: 98%; }
     a.button { float: right; margin-top: 10px; }
   }
+}
+
+.attachment_panel {
+  @include background(5px);
+  @include zoom;
+  display: none;
+  margin-top: 10px;
+  padding: 10px 16px;
+  input { float: left; }
+  a.button { float: left; margin-left: 10px; margin-top: 5px; }
+}
+
+.attachment_panel.photo {
+  input { margin-top: 15px; }
 }
 
 /* User Notifications */
@@ -90,6 +105,7 @@ html { @include body_bg; }
       width: 98%;      
     }
   }
+  .notification_list { margin-bottom: 5px; }
 } 
 
 /* User Dialogs */

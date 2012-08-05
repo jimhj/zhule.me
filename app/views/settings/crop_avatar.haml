@@ -17,6 +17,7 @@
       .preview_panel{ :style => 'width:180px; height:180px; overflow:hidden;' }
         = image_tag current_user.avatar.url, :id => 'previewImage'
         = text_field_tag 'crop_position'
+        = text_field_tag 'last_upload_avatar', current_user.avatar.url
       .buttons
         %a.button.submit{ :href => 'javascript:;' } 确定
         %a.button.gray{ :href => setting_avatar_path } 取消

@@ -1,22 +1,28 @@
 .assistance_detail
   .content
     = @assist.content
+    .pics
+      - unless @assist.attachments.blank?
+        - @assist.attachments.each do |attach|
+          = image_tag attach.photo_url(:m), 'data-large_url' => attach.photo_url(:l), :class => 'small'
+
   .tools
     .status
-      %span 
-        于 3 天前
-      %a{ :href => 'javascript:;' }
-        %i.icons.icons_map
-        北京 朝阳
+      %abbr.timeago{ :title => @assist.created_at }
+      - if @assist.address.present?
+        %a{ :title => @assist.address }
+          %i.icons.icons_map
+          = @assist.address
       %a{ :href => joined_assistance_path(@assist.id) }
         %i.icons.icons_person
         = "参与帮忙(#{@assist.helpers_count})"
-      %a{ :href => '#' }
+      %a{ :href => assistance_path(@assist.id) }
         %i.icons.icons_comt
         = "评论(#{@assist.comments_count})"
-      %a{ :href => '#' }
-        %i.icons.icons_pencil
-        编辑        
+      - if current_user == @assist.user        
+        %a{ :href => '#' }
+          %i.icons.icons_pencil
+          编辑        
     .buttons
       - if current_user != @user
         %a.button.helpWhom{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' }
@@ -31,12 +37,16 @@
     这些人帮了TA
     %a.action{ :href => joined_assistance_path(@assist.id) } 更多
   .helper_list
-    - @assist_helpers.each do |assist_helper|
-      .helper_li
-        %a{ :href => user_path(assist_helper.user_id), :title => assist_helper.helpful ? "对#{@user.login}有帮助的" : assist_helper.user.login }
-          = image_tag assist_helper.user.avatar_url(:c), :size => '50x50'
-        - if assist_helper.helpful
-          %i.icons.icons_smile
+    - if @assist_helpers.blank?
+      %p{ :style => 'margin: 10px auto; color: #999' } 
+        暂时还没有人帮TA...      
+    - else
+      - @assist_helpers.each do |assist_helper|
+        .helper_li
+          %a{ :href => user_path(assist_helper.user_id), :title => assist_helper.helpful ? "对#{@user.login}有帮助的" : assist_helper.user.login }
+            = image_tag assist_helper.user.avatar_url(:c), :size => '50x50'
+          - if assist_helper.helpful
+            %i.icons.icons_smile
 
 .comment_panel
   .title

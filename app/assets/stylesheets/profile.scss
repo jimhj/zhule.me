@@ -55,6 +55,7 @@ html { @include body_bg; }
 
     .user_name {
       @include font(20px, #3B5998); font-weight: bold;
+      a.sendMsgBtn { @include font(12px); font-weight: normal; vertical-align: top; }
     }
     .region {
       @include margin;
@@ -72,7 +73,7 @@ html { @include body_bg; }
     .achievement {
       @include margin(10px);
       line-height: 16px;
-      a { @include margin(10px, right);  @include font(12px, #3E8BD9); } 
+      a { @include margin(10px, right);  @include font(12px, #3E8BD9); font-weight: bold; } 
     }
   }
   .actions {

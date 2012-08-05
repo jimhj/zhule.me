@@ -3,20 +3,20 @@
     = @assist.content
   .tools
     .status
-      %span 
-        于 3 天前
+      %abbr.timeago{ :title => @assist.created_at }
       %a{ :href => '#' }
         %i.icons.icons_map
         北京 朝阳
       %a{ :href => joined_assistance_path(@assist.id) }
         %i.icons.icons_person
         = "参与帮忙(#{@assist.helpers_count})"
-      %a{ :href => 'javascript:;' }
+      %a{ :href => assistance_path(@assist.id) }
         %i.icons.icons_comt
         = "评论(#{@assist.comments_count})"
-      %a{ :href => '#' }
-        %i.icons.icons_pencil
-        编辑        
+      - if current_user == @assist.user
+        %a{ :href => 'javascript:;' }
+          %i.icons.icons_pencil
+          编辑        
     .buttons
       - if current_user != @user
         %a.button.helpWhom{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' }
@@ -37,7 +37,7 @@
         .helper_single_line
           .avatar
             %a{ :href => user_path(help.user_id) }
-              = image_tag help.user.avatar_url(:m), :size => '80x80'
+              = image_tag help.user.avatar_url(:c), :size => '50x50'
             .message
               - if help.user_id != current_user.id
                 = message_link_tag(help.user)
