@@ -1,5 +1,5 @@
 @mixin body_bg($img: 'retro_bg.png') {
-  background: image-url($img) repeat scroll 0 0 transparent;
+  background: url($img) repeat scroll 0 0 transparent;
 }
 
 @mixin background($radius: 5px, $bgcolor: #EEE) {

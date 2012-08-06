@@ -5,7 +5,7 @@ GIT
     mongoid_colored_logger (0.1.1)
 
 GEM
-  remote: https://rubygems.org/
+  remote: http://ruby.taobao.org/
   specs:
     actionmailer (3.2.6)
       actionpack (= 3.2.6)

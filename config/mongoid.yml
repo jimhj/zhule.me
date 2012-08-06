@@ -17,7 +17,7 @@ test:
     default:
       hosts:
         - 127.0.0.1:27017
-      database: ruby_china_test
+      database: zhule_dev_test
 
 # set these environment variables on your prod server
 production:
@@ -26,4 +26,4 @@ production:
     default:
       hosts:
         - 127.0.0.1:27017
-      database: ruby_china
+      database: zhule_dev

@@ -4,6 +4,7 @@
 #= require lib/artdialog/plugins/iframeTools
 #= require lib/jquery.timeago
 #= require lib/jquery.timeago.zh-CN
+#= require lib/jquery.form
 
 Zhule = window.Zhule = {}
 Zhule.tips = (msg) ->

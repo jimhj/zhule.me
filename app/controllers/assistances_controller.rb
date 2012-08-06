@@ -22,7 +22,7 @@ class AssistancesController < ApplicationController
         attachment.update_attributes(:attachmentable_type => 'Assistance', :attachmentable_id => assist.id)
       end
       respond_to do |format|
-        format.js { render :text => { :success => true }.to_json }
+        format.js { render :text => { :success => assist.save }.to_json }
       end
     rescue
       render :text => { :success => false }.to_json
