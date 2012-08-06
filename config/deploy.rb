@@ -23,7 +23,7 @@ set :use_sudo, false
 default_run_options[:pty] = true
 
 # if you want to clean up old releases on each deploy uncomment this:
-# after "deploy:restart", "deploy:cleanup"
+after "deploy:restart", "deploy:cleanup"
 
 # if you're still using the script/reaper helper you will need
 # these http://github.com/rails/irs_process_scripts
@@ -46,4 +46,4 @@ task :compile_assets, :roles => :web do
   run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake assets:precompile"
 end
 
-after "deploy:finalize_update","deploy:symlink", :compile_assets
+after "deploy:finalize_update","deploy:create_symlink", :compile_assets
