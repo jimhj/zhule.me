@@ -10,7 +10,7 @@ class PhotoUploader < BaseUploader
   end
 
   def store_dir
-    'system/uploaded/photo'
+    '~/uploaded/photo'
   end
 
 end
