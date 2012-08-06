@@ -3,6 +3,10 @@ require "bundler/capistrano"
 # If you have custom Sidekiq configuration options put them in config/sidekiq.yml
 # require "sidekiq/capistrano"
 
+require "rvm/capistrano"
+set :rvm_ruby_string, '1.9.2'
+set :rvm_type, :user
+
 set :application, "zhule"
 set :repository,  "nick@192.168.0.103:www/#{application}"
 
@@ -13,7 +17,7 @@ set :deploy_to, "/home/nick/www/#{application}"
 set :branch, 'master'
 
 server "192.168.0.103", :app, :web, :db, :primary => true
-set :user, 'deploy'
+set :user, 'nick'
 set :use_sudo, false
 
 default_run_options[:pty] = true
