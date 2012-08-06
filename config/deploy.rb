@@ -4,7 +4,7 @@ require "bundler/capistrano"
 # require "sidekiq/capistrano"
 
 require "rvm/capistrano"
-set :rvm_ruby_string, '1.9.2'
+set :rvm_ruby_string, '1.9.3'
 set :rvm_type, :user
 
 set :application, "zhule"
@@ -46,4 +46,4 @@ task :compile_assets, :roles => :web do
   run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake assets:precompile"
 end
 
-after 'deploy:update_code', :compile_assets
+# after 'deploy:update_code', :compile_assets
