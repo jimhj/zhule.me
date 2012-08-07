@@ -17,7 +17,7 @@ class AvatarUploader < BaseUploader
   end
 
   def store_dir
-    '~/uploaded/avatar'
+    'system/uploaded/avatar'
   end
 
   def default_url
