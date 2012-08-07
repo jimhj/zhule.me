@@ -47,7 +47,7 @@ task :compile_assets, :roles => :web do
 end
 
 task :rm_production_log, :roles => :web do
-  run "cd #{deploy_to}/current/log; sudo rm -rf production.log"
+  run "cd #{deploy_to}/current/log; #{try_sudo} rm -rf production.log"
 end
 
 after "deploy:finalize_update","deploy:create_symlink", :compile_assets, :rm_production_log
