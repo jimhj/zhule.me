@@ -47,8 +47,8 @@ task :compile_assets, :roles => :web do
   run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake assets:precompile"
 end
 
-task :rm_production_log, :roles => :web do
-  run "cd #{deploy_to}/current/log; #{try_sudo} rm -rf production.log"
-end
+# task :rm_production_log, :roles => :web do
+#   run "cd #{deploy_to}/current/log; #{try_sudo} rm -rf production.log"
+# end
 
 after "deploy:finalize_update","deploy:create_symlink", :compile_assets
