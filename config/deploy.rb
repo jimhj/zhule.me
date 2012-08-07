@@ -14,7 +14,7 @@ set :repository,  "deploy@106.187.101.105:www/#{application}"
 
 set :scm, :git
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
-set :deploy_to, "/home/nick/www/#{application}"
+set :deploy_to, "/home/deploy/www/#{application}"
 set :branch, 'master'
 
 server "106.187.101.105", :app, :web, :db, :primary => true
