@@ -5,13 +5,7 @@ class IndexController < ApplicationController
   before_filter :require_login, :only => :sign_out
 
   def index
-    @assistances = begin
-      Assistance.includes(:user).desc('created_at').limit(6).sample(3)
-    rescue Exception => e
-      logger.error e.backtrace
-      return
-    end
-
+    @assistances = Assistance.includes(:user).desc('created_at').limit(6).sample(3)
     if request.post?
       user = User.authenticate(params[:email], params[:password])
       if user.present?
