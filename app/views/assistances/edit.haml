@@ -1,0 +1,36 @@
+.eadit_assistance_detail
+  .new_help_form
+    .notice
+      编辑求助内容
+    .form_panel#newAssistance
+      %textarea.form_text{ :name => 'content', 'data-attachment_id' => @attachment.id }= @assist.content
+      .bottom_tools
+        .option
+          %a.location{ :href => 'javascript:;' }
+            %i.icons.icons_c_map
+            %span= @address
+        .option     
+          %a.uploadImage{ :href => 'javascript:;' }
+            %i.icons.icons_img
+            %span= @filename                  
+      %a.button.green.submit{ :href => 'javascript:;' } 修改求助
+
+  .attachment_panel.address{ :style => 'display:block;'}
+    .title
+      编辑地点
+    .address_input
+      %input.text{ :type => 'text', :value => @address }
+      %a.button.submit{ :href => 'javascript:;' } 确定
+      %a.button.gray{ :href => 'javascript:;' } 取消
+
+  .attachment_panel.photo{ :style => 'display:block;'}
+    .title
+      上传图片
+    .photo_input
+      = form_tag upload_photo_assistances_path, :multipart => true do
+        %input{ :type => 'file', :name => 'photo' }
+        %a.button.submit{ :href => 'javascript:;' } 确定
+        %a.button.gray{ :href => 'javascript:;' } 取消
+    .current_photo
+      - if @attachment.present?
+        = image_tag @attachment.photo_url(:m)    

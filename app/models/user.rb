@@ -82,6 +82,12 @@ class User
     end
   end
 
+  def read_messages(messages)
+    unread_ids = messages.find_all{ |message| !message.readed? }.map(&:_id)
+    Message.where({ :user_id => self.id, :_id.in => unread_ids }).update_all(:readed => true)
+    self.update_attribute(:messages_count, 0)
+  end
+
   def unread_notifications_count
     self.notifications.where(:readed => false).count
   end

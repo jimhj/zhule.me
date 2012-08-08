@@ -58,8 +58,8 @@ html { @include body_bg; }
     line-height: 24px;
     .pics {
       margin-top: 10px;
-      img.small { cursor:image-url("big.cur"), pointer; height:auto; width:auto; }
-      img.large { cursor:image-url("small.cur"), pointer; height:auto; width:auto; }
+      img.small { cursor:url('big.cur'), pointer; height:auto; width:auto; }
+      img.large { cursor:url('small.cur'), pointer; height:auto; width:auto; }
     } 
   }
 
@@ -76,6 +76,51 @@ html { @include body_bg; }
     .buttons { float: right; }
     
   }
+}
+
+// edit assistance
+
+.eadit_assistance_detail {
+  .new_help_form {
+    @include background(5px);
+    @include font(12px);
+    padding: 5px 16px 12px 16px;
+    .notice { @include font(14px, #666666); margin: 5px 0px 10px; }
+    .form_panel {
+      @include zoom;
+      .bottom_tools { 
+        float: left; margin-top: 10px; 
+        width: 80%;
+        .option {
+          display: block;
+          float: left; 
+          padding: 5px 5px; 
+          margin-right: 10px;  
+          a { @include font(12px); }      
+        }
+      } 
+
+      textarea { width: 98%; }
+      a.button { float: right; margin-top: 10px; }
+    }
+  }
+
+  .attachment_panel {
+    @include background(5px);
+    @include zoom;
+    display: none;
+    margin-top: 10px;
+    padding: 10px 16px;
+    input { float: left; }
+    a.button { float: left; margin-left: 10px; margin-top: 5px; }
+    .address_input, .photo_input { @include zoom; margin-top: 10px; }
+    .current_photo {  margin-top: 10px; }
+  }
+
+  .attachment_panel.photo {
+    @include zoom;
+    input { margin-top: 15px; }
+  }  
 }
 
 .i_can_help {

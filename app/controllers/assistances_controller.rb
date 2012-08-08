@@ -29,6 +29,20 @@ class AssistancesController < ApplicationController
     end
   end
 
+  def edit
+    @assist = Assistance.where(:_id => params[:id]).first
+    @user = @assist.user
+    return if current_user != @user
+    @address = @assist.address
+    @address = '地点' if @address.blank?
+    @filename = '上传图片'
+    @attachment = @assist.attachments.first
+    @filename = @attachment.photo_filename if @attachment.present?
+  end
+
+  def update
+  end
+
   def joined
     @assist = Assistance.where(:_id => params[:id]).first
     @user = @assist.user

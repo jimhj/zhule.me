@@ -80,7 +80,7 @@ Zhule.Messenger =
             to_user_id: user_id
           $.post '/dialogs/send_message', paramtes, (data) ->
             if data.success
-              art.dialog.tips('私信已发送！')
+              Zhule.tips('私信已发送！')
           , 'json'
         cancel: true
 

@@ -1,6 +1,6 @@
 Zhule.Dialog = 
   init : ->
-    this.__readDialog()
+    # this.__readDialog()
 
   __readDialog : ->
     if $('.readDialog').length == 1

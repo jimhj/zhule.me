@@ -17,9 +17,9 @@ Zhule::Application.routes.draw do
       post :send_message
     end
 
-    member do
-      post :read_messages
-    end
+    # member do
+    #   post :read_messages
+    # end
   end
 
   resources :assistances, :except => [:index] do

@@ -63,7 +63,7 @@ Zhule.Home.Assistance =
     $form.find('a.submit').click -> 
       $this = $(this)
       content = $form.find('textarea').val()
-      if content.length < 20
+      if content.length < 10
         Zhule.tips('字数是不是太少啦？')
       else
         address = $('.attachment_panel.address').find('input').val()
@@ -72,7 +72,8 @@ Zhule.Home.Assistance =
         $.post '/assistances', paramters, (data) ->
           if data.success
             Zhule.tips('发表求助成功！')
-            # window.location = window.location
+            $form.find('textarea').val('')
+            window.location = window.location
         , 'json'
 
 Zhule.Home.Message = 
