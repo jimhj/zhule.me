@@ -51,6 +51,8 @@ html {
           @include font(14px, #999); line-height: 22px;
         }
 
+        .photo { margin-top: 10px; margin-left: 10px; }
+
       }
       .tools {
         text-align: right; overflow:hidden;

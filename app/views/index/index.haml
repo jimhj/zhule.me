@@ -18,6 +18,9 @@
           %p.detail{ :title => assistance.content }
             %a.user_name{ :href => user_path(assistance.user_id) }= "#{assistance.user.login}:" 
             = assistance.content.truncate(100)
+          - if assistance.attachments.first.present?
+            .photo
+              = image_tag assistance.attachments.first.photo_url(:m)
         .tools
           %a.button{ :href => assistance_path(assistance.id) } 去帮她
   .login-form
