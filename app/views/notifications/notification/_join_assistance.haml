@@ -12,7 +12,7 @@
           %span.new_notice 新！
         %a{ :href => user_path(user.id) }= user.login 
         表示对你的求助
-        %a{ :href => assistance_path(assistance.id) }
+        %a{ :href => joined_assistance_path(assistance.id) }
           = assistance.content
         很有意向
       .body

@@ -13,20 +13,9 @@ class DialogsController < ApplicationController
       return
     end
     @messages = @dialog.messages.includes(:from_user).paginate(:page => params[:page], :per_page => 10)
-    current_user.read_messages(@messages)
+    current_user.read_messages(@dialog, @messages)
   end
 
-  def read_messages
-    # @dialog = Dialog.where(:_id => params[:id]).first
-    # # Don't know why it's not working.
-    # # Message.where(:dialog_id => params[:id]).update_all('readed' => true)
-    # @dialog.messages.each do |msg|
-    #   msg.readed = true
-    #   msg.save
-    # end
-    # @dialog.to_user.update_attribute(:messages_count, 0)
-    # render :nothing => true
-  end
 
   def create
   end

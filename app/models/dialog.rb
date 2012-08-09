@@ -24,8 +24,8 @@ class Dialog
   index :from_user_id => 1
   index :updated_at => -1
 
-  def unread_count
-    self.messages.where(:readed => false).count
+  def unread_count(current_user_id)
+    self.messages.where(:readed => false).where(:from_user_id.ne => current_user_id).count
   end
 
   # def self.create_dialog(current_user_id, to_user_id)

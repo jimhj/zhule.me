@@ -82,9 +82,15 @@ class User
     end
   end
 
-  def read_messages(messages)
+  def read_messages(dialog, messages)
     unread_ids = messages.find_all{ |message| !message.readed? }.map(&:_id)
-    Message.where({ :user_id => self.id, :_id.in => unread_ids }).update_all(:readed => true)
+    # why it doesn't work?
+    # dialog.messages.where({ :user_id => self._id, :_id.in => unread_ids }).update_all(:readed => true)
+    dialog.messages.each do |m|
+      if unread_ids.include?(m._id)
+        m.update_attribute(:readed, true)
+      end
+    end
     self.update_attribute(:messages_count, 0)
   end
 

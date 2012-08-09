@@ -16,9 +16,9 @@
             /   %a{ :href => user_path(dialog.from_user_id) }= dialog.from_user.login 
           .info
             .dialog_content
-              - unless dialog.unread_count.zero?
+              - unless dialog.unread_count(current_user.id).zero?
                 %p.unread_count
-                  %span= "#{dialog.unread_count} 条新私信"
+                  %span= "#{dialog.unread_count(current_user.id)} 条新私信"
               %p
                 %a.user_name{ :href => user_path(dialog.messages.last.sender_id) }= "#{dialog.last_reply_user_login}:"
                 = dialog.messages.first.content
