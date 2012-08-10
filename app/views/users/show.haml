@@ -16,8 +16,7 @@
         %span= @user.tagline
       %p
         主页：
-        - if @user.weibo_uid.present?
-          %a{ :href => "http://weibo.com/u/#{@user.weibo_uid}", :target => '_blank' }= "http://weibo.com/u/#{@user.weibo_uid}"     
+        = open_page_tag(@user)    
     .achievement
       %a{ :href => url_for(:type => 'helpeds') }
         帮助过

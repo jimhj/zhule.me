@@ -9,6 +9,7 @@ class SettingsController < ApplicationController
       current_user.address = params[:address]
       current_user.tag_list = params[:tag_list]
       current_user.tagline = params[:tagline]
+      current_user.open_page = params[:open_page]
       if current_user.save
         flash[:success] = '资料更新成功'
       else

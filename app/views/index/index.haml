@@ -22,7 +22,7 @@
             .photo
               = image_tag assistance.attachments.first.photo_url(:m)
         .tools
-          %a.button{ :href => assistance_path(assistance.id) } 去帮她
+          %a.button{ :href => assistance_path(assistance.id) } 去帮TA
           
   .weibo_login
     %a{ :href => '/auth/weibo' }

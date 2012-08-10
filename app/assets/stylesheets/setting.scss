@@ -29,7 +29,7 @@ html {
 
 .edit_info_form_panel {
   @include zoom;
-  @include form(30px, 200px);
+  @include form(30px);
   @include font(14px);
   width: 90%;
   margin: 0px auto;

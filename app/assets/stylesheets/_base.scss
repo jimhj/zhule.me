@@ -82,7 +82,7 @@
   }
 }
 
-@mixin form($margin: 30px, $span-width: 120px) {
+@mixin form($margin: 30px, $span-width: auto) {
   .blank { 
     @include zoom;
     margin: #{$margin} 0px;

@@ -33,6 +33,8 @@ gem 'omniauth-oauth2', '~> 1.0.2'
 # HTTP Client
 gem 'faraday', '~> 0.8.0'
 
+gem 'multi_json'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'

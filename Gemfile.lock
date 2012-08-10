@@ -184,6 +184,7 @@ DEPENDENCIES
   mini_magick (= 3.4)
   mongoid (~> 3.0.0)
   mongoid_colored_logger!
+  multi_json
   omniauth (~> 1.1.0)
   omniauth-oauth2 (~> 1.0.2)
   rails (= 3.2.6)

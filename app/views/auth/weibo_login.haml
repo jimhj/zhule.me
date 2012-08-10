@@ -10,11 +10,11 @@
         .form_panel
           = render 'shared/flash_notice'
           .authorized_user
-            %img{ :src => @auth_hash[:avatar_url], :width => '30', :height => '30' }
-            = "#{@auth_hash[:name]}，已授权成功，请填写您常用的邮箱："
+            %img{ :src => @auth_hash['avatar_url'], :width => '30', :height => '30' }
+            = "#{@auth_hash['name']}，已授权成功，请填写您常用的邮箱："
           .set_email
             %input.text{ :type => 'text', :name => 'email' }
-            = hidden_field_tag 'auth', @auth_hash
+            = hidden_field_tag 'auth', @auth_hash.to_json
           .remarks
             用于找回密码等重要信息
           .buttons

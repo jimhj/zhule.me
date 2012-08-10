@@ -14,6 +14,7 @@ class User
   field :last_logged_at, :type => Time
   field :tags, :type => Array, :default => []
   field :tagline
+  field :open_page
 
   field :weibo_uid
   field :weibo_token
@@ -119,19 +120,15 @@ class User
     end
 
     def create_by_email_and_auth(email, auth)
-      # weibo_uid = auth.uid.to_s
-      weibo_uid = auth[:uid]
+      weibo_uid = auth['uid']
       return nil if weibo_uid.blank?
       user = User.new
       user.email = email
-      # user.login = auth.info.name
-      user.login = auth[:name]
+      user.login = auth['name']
       user.password_confirmation = user.password = SecureRandom.hex(4)
-      # user.remote_avatar_url = "#{auth.info.avatar_url}/sample.jpg" # wired or upload remote image will be failed.
-      user.remote_avatar_url = "#{auth[:avatar_url]}/sample.jpg"
+      user.remote_avatar_url = "#{auth['avatar_url']}/sample.jpg"
       user.weibo_uid = weibo_uid
-      # user.weibo_token = auth.credentials.token
-      user.weibo_token = auth[:weibo_token]
+      user.weibo_token = auth['weibo_token']
       if user.valid?
         user.save
         user

@@ -4,12 +4,12 @@ class AuthController < ApplicationController
   def weibo_login
     auth = request.env["omniauth.auth"]
     @auth_hash = {
-      :uid          =>    auth.uid,
-      :name         =>    auth.info.name,
-      :avatar_url   =>    auth.info.avatar_url,
-      :weibo_token  =>    auth.credentials.token
+      'uid'          =>    auth.uid,
+      'name'         =>    auth.info.name,
+      'avatar_url'   =>    auth.info.avatar_url,
+      'weibo_token'  =>    auth.credentials.token
     }
-    user = User.find_by_weibo_uid(@auth_hash[:uid])
+    user = User.find_by_weibo_uid(@auth_hash['uid'])
     if user.present?
       self.current_user = user
       redirect_to home_path
@@ -19,7 +19,7 @@ class AuthController < ApplicationController
   end
 
   def new_user
-    @auth_hash = eval(params[:auth] || '')
+    @auth_hash = MultiJson.load(params[:auth] || '{}')
     email = params[:email]
     if User.where(:email => email).exists?
       flash[:error] = 'Email 已经被注册过了'

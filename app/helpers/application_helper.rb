@@ -1,6 +1,5 @@
 # coding: utf-8
 module ApplicationHelper
-
   def message_link_tag(user, opts = {}, &block)
     return '' unless logged_in? 
     options = { :class => 'sendMsgBtn', :link_text => '私信', :title => "向#{user.login}发送私信" }.merge(opts)
@@ -38,6 +37,24 @@ module ApplicationHelper
     end
 
     total.html_safe
+  end
+
+  def open_page_tag(user)
+    open_page = ''
+    if user.open_page.blank?
+      if user.weibo_uid.present?
+        weibo_url = "http://weibo.com/u/#{user.weibo_uid}"
+        open_page = link_to weibo_url, weibo_url, :target => '_blank'
+      end
+    else
+      if user.open_page.start_with?('http://') || user.open_page.start_with?('https://')
+        open_page = link_to user.open_page, user.open_page, :target => '_blank'
+      else
+        url = 'http://' << user.open_page
+        open_page = link_to url, url, :target => '_blank'
+      end
+    end
+    open_page.html_safe
   end
 
 end
