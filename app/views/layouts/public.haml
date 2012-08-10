@@ -9,6 +9,7 @@
     = csrf_meta_tags
     %meta{ :name => 'keywords', :content => '帮助别人，快乐自己' }
     %meta{ :name => 'description', :content => '帮助别人，快乐自己' }
+    %link{ :href => image_path('favicon.ico'), :rel => 'shortcut icon', :type => 'image/vnd.microsoft.icon' }
     /Le HTML5 shim, for IE6-8 support of HTML5 elements
     /[if IE 9]
       %script{ :src => 'http://html5shiv.googlecode.com/svn/trunk/html5.js' }
@@ -17,3 +18,4 @@
     .main-container
       = yield
     = render 'layouts/shared/site_footer'
+    = render 'shared/google_analytics'
