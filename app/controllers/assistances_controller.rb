@@ -1,7 +1,7 @@
 # coding: utf-8
 class AssistancesController < ApplicationController
   layout 'assistance'
-  before_filter :require_login
+  before_filter :require_login, :except => [:show, :joined]
 
   def index
   end

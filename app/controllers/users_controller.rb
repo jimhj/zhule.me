@@ -1,7 +1,7 @@
 # coding: utf-8
 class UsersController < ApplicationController
   layout 'profile'
-  before_filter :require_login
+  before_filter :require_login, :except => :show
 
   def index
   end

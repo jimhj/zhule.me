@@ -2,6 +2,7 @@
 module ApplicationHelper
 
   def message_link_tag(user, opts = {}, &block)
+    return '' unless logged_in? 
     options = { :class => 'sendMsgBtn', :link_text => '私信', :title => "向#{user.login}发送私信" }.merge(opts)
     link_text = options.delete(:link_text)
     options.merge!({ 'data-user_id' => user.id, 'data-user_name' => user.login })

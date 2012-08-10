@@ -19,18 +19,18 @@
       %a{ :href => assistance_path(@assist.id) }
         %i.icons.icons_comt
         = "评论(#{@assist.comments_count})"
-      - if current_user == @assist.user        
+      - if logged_in? && current_user == @assist.user        
         %a{ :href => '#' }
           %i.icons.icons_pencil
           编辑        
     .buttons
-      - if current_user != @user
+      - if logged_in? && current_user != @user
         %a.button.helpWhom{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' }
           = current_user.helped?(@assist.id) ? '已提交帮助' : '帮她一把'
-
-.i_can_help    
-  %textarea.form_text{ 'data-assistance_id' => @assist.id } 我能帮你：
-  %a.button.submit{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' } 发送
+- if logged_in?
+  .i_can_help    
+    %textarea.form_text{ 'data-assistance_id' => @assist.id } 我能帮你：
+    %a.button.submit{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' } 发送
 
 .participate
   .title
@@ -48,6 +48,7 @@
           - if assist_helper.helpful
             %i.icons.icons_smile
 
+
 .comment_panel
   .title
     评论
@@ -58,8 +59,9 @@
     - else
       = render :partial => 'comments/comment', :collection => @comments
   = will_paginate @comments, :class => 'digg_pagination'
-  .new_comt_form
-    %textarea.form_text
-    %a.button.postComment{ :href => 'javascript:;', 'data-commentable_id' => @assist.id, 'data-commentable_type' => 'Assistance' } 评论
+  - if logged_in?
+    .new_comt_form
+      %textarea.form_text
+      %a.button.postComment{ :href => 'javascript:;', 'data-commentable_id' => @assist.id, 'data-commentable_type' => 'Assistance' } 评论
 
 

@@ -4,7 +4,7 @@
   .user_info
     .user_name
       %span= @user.login
-      - if current_user != @user
+      - if logged_in? && current_user != @user
         = message_link_tag(@user, :link_text => '')   
     .region
       %span= @user.address.blank? ? '未填写' : @user.address
@@ -29,7 +29,7 @@
         %i.icons.icons_smile
         %span= @user.helpful_count
   .actions
-    - if current_user != @user
+    - if logged_in? && current_user != @user
       %a.button.followBtn{ :href => 'javascript:;', :class => current_user.followed?(@user.id) ? 'gray' : '', 'data-user_id' => @user.id }= current_user.followed?(@user.id) ? '已关注' : '+ 加关注'
 
 .user_zl_list
@@ -50,7 +50,7 @@
               %a
                 = image_tag assistance.user.avatar_url(:m), :size => '80x80'
               .action
-                - if current_user != assistance.user
+                - if logged_in? && current_user != assistance.user
                   = message_link_tag(assistance.user) 
             .content
               %a.user_name= "#{assistance.user.login}:"
