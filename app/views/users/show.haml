@@ -16,8 +16,8 @@
         %span= @user.tagline
       %p
         主页：
-        - if false
-          %a{ :href => '#' } http://www.123.com          
+        - if @user.weibo_uid.present?
+          %a{ :href => "http://weibo.com/u/#{@user.weibo_uid}", :target => '_blank' }= "http://weibo.com/u/#{@user.weibo_uid}"     
     .achievement
       %a{ :href => url_for(:type => 'helpeds') }
         帮助过

@@ -13,6 +13,13 @@
       %span.attr 地区：
       %input.text{ :type => 'text', :name => 'address', :value => current_user.address }
       %span.message 你所在的地区
+      
+    - if current_user.weibo_token.blank?
+      .blank
+        %span.attr 新浪微博ID：
+        %input.text{ :type => 'text', :name => 'weibo_uid', :value => current_user.weibo_uid }
+        %span.message 填写你的新浪微博ID
+
     .blank
       %span.attr 擅长于：
       %textarea.form_text{ :type => 'text', :name => 'tag_list' }= current_user.tag_list

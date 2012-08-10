@@ -131,7 +131,7 @@ class User
       user.remote_avatar_url = "#{auth[:avatar_url]}/sample.jpg"
       user.weibo_uid = weibo_uid
       # user.weibo_token = auth.credentials.token
-      user.weibo_token = auth[:token]
+      user.weibo_token = auth[:weibo_token]
       if user.valid?
         user.save
         user
