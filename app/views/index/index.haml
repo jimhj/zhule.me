@@ -23,6 +23,11 @@
               = image_tag assistance.attachments.first.photo_url(:m)
         .tools
           %a.button{ :href => assistance_path(assistance.id) } 去帮她
+          
+  .weibo_login
+    %a{ :href => '/auth/weibo' }
+      = image_tag 'weibo240.png'   
+
   .login-form
     = form_tag sign_in_path, :id => 'loginForm' do
       %p.register
@@ -41,3 +46,4 @@
           %a.button.green{ :href => sign_up_path } 注册
         %p
           %a.forget_password{ :href => '#' } 忘记密码？
+

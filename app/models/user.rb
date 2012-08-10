@@ -13,7 +13,10 @@ class User
   field :address, :type => String, :default => ''
   field :last_logged_at, :type => Time
   field :tags, :type => Array, :default => []
-  field :tagline 
+  field :tagline
+
+  field :weibo_uid
+  field :weibo_token
   
   field :assistances_count, :type => Integer, :default => 0
   field :helped_stuffs_count, :type => Integer, :default => 0
@@ -23,6 +26,7 @@ class User
   field :fans_count, :type => Integer, :default => 0
 
   index({ :email => 1 }, { :unique => true })
+  index({ :weibo_uid => 1 }, { :unique => true })
 
   has_many :assistances
   has_many :assistance_helpers
@@ -40,7 +44,7 @@ class User
   validates_presence_of :password
   validates_confirmation_of :password
 
-  attr_accessible :email, :login, :password, :password_confirmation
+  attr_accessible :email, :login, :password, :password_confirmation, :weibo_uid, :weibo_token
   attr_accessible :avatar, :avatar_cache
   mount_uploader :avatar, AvatarUploader
 
@@ -103,11 +107,40 @@ class User
   end
 
   class << self
+
     def authenticate(email, password)
       user = self.where(:email => email).first
       return nil if user.nil?
       user.password == password ? user : nil
     end
+
+    def find_by_weibo_uid(uid)
+      self.find_by(:weibo_uid => uid)
+    end
+
+    def create_by_email_and_auth(email, auth)
+      # weibo_uid = auth.uid.to_s
+      weibo_uid = auth[:uid]
+      return nil if weibo_uid.blank?
+      user = User.new
+      user.email = email
+      # user.login = auth.info.name
+      user.login = auth[:name]
+      user.password_confirmation = user.password = SecureRandom.hex(4)
+      # user.remote_avatar_url = "#{auth.info.avatar_url}/sample.jpg" # wired or upload remote image will be failed.
+      user.remote_avatar_url = "#{auth[:avatar_url]}/sample.jpg"
+      user.weibo_uid = weibo_uid
+      # user.weibo_token = auth.credentials.token
+      user.weibo_token = auth[:token]
+      if user.valid?
+        user.save
+        user
+      else
+        nil
+      end
+    end
+
+
   end
 
 

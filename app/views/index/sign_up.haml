@@ -34,7 +34,8 @@
         或者使用以下方式登录
       .logways
         %p
-          = image_tag 'weibo240.png'
+          %a{ :href => '/auth/weibo' }
+            = image_tag 'weibo240.png'
 
     .signed_up     
       .title

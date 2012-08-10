@@ -43,6 +43,9 @@ Zhule::Application.routes.draw do
     match 'avatar' => 'settings#avatar', :as => :setting_avatar, :via => [:get, :post]
     match 'avatar/crop' => 'settings#crop_avatar', :as => :crop_avatar
   end
+
+   match 'auth/weibo/callback' => 'auth#weibo_login'
+   match 'auth/new_user' => 'auth#new_user', :as => :auth_new_user, :via => 'POST'
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 end

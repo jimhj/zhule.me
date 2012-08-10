@@ -1,10 +1,20 @@
+Zhule.OAuth = 
+  init : ->
+    this.__createOauthUser()
+
+  __createOauthUser : ->
+    $('#newWeiboUserForm').find('a.submit').click ->
+      email = $('.set_email').find('input').val()
+      if $.trim(email).length > 0
+        $(this).parents('form')[0].submit()
+
 Zhule.SignUp = 
   init : ->
     this.__createUser()
 
   __createUser : ->
     $('#newUserForm').find('a.submit').click ->
-      $(this).parents('form').submit()
+      $(this).parents('form')[0].submit()
 
 Zhule.SignIn = 
   init : ->
@@ -29,7 +39,7 @@ Zhule.SignIn =
         $this.prev().show()
     .keyup (e) ->
       if e.keyCode == 13
-        $(this).parents('form').submit()
+        $(this).parents('form')[0].submit()
 
     $('#loginForm').find('a.submit').click ->
       $form = $(this).parents('form')
@@ -40,3 +50,4 @@ Zhule.SignIn =
 $(document).ready ->
   Zhule.SignUp.init()
   Zhule.SignIn.init()
+  Zhule.OAuth.init()

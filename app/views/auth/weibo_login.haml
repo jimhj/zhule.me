@@ -1,0 +1,31 @@
+- content_for :header_js do
+  = javascript_include_tag 'sign'
+
+.container
+  .left_form
+    .weibo_callback_form
+      .notify
+        新浪微博授权
+      = form_tag auth_new_user_path, :id => 'newWeiboUserForm' do
+        .form_panel
+          = render 'shared/flash_notice'
+          .authorized_user
+            %img{ :src => @auth_hash[:avatar_url], :width => '30', :height => '30' }
+            = "#{@auth_hash[:name]}，已授权成功，请填写您常用的邮箱："
+          .set_email
+            %input.text{ :type => 'text', :name => 'email' }
+            = hidden_field_tag 'auth', @auth_hash
+          .remarks
+            用于找回密码等重要信息
+          .buttons
+            %a.button.submit{ :href => 'javascript:;' } 确认
+
+  .right_reminder
+    .signed_up{ :style => 'margin-top: 0px;' }     
+      .title
+        已经有账号了？
+      .links
+        %p
+          %a{ :href => sign_in_path } 登录
+        %p
+          %a{ :href => '#' } 忘记密码        

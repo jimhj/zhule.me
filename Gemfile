@@ -26,6 +26,13 @@ gem 'sidekiq', '~> 2.1.0'
 # Paginate
 gem 'will_paginate', '~> 3.0.3'
 
+# OAuth
+gem 'omniauth', '~> 1.1.0'
+gem 'omniauth-oauth2', '~> 1.0.2'
+
+# HTTP Client
+gem 'faraday', '~> 0.8.0'
+
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
@@ -34,9 +41,6 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'

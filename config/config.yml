@@ -1,6 +1,13 @@
-# Image DFS Path
-enable_dfs_host_parse: false
-dfs_host_prefix: 'http://i%s.kandao.com'
+defaults: &defaults
+  weibo_key: "3218958256"
+  weibo_secret: "0b618d9caa3151d4103d605623890268"
+  admin_user_email: 'bzu_2007@126.com'
 
-enable_image_storage_parse: false
-location_to_store_uploaded_assets: '/home/laohuang/uploaded'
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
