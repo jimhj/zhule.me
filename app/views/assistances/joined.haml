@@ -21,7 +21,7 @@
       - if logged_in? && current_user != @user
         %a.button.helpWhom{ :href => 'javascript:;', :class => current_user.helped?(@assist.id) ? 'gray' : '' }
           = current_user.helped?(@assist.id) ? '已提交帮助' : '帮她一把'
-          
+
 - if logged_in?
   .i_can_help    
     %textarea.form_text{ 'data-assistance_id' => @assist.id } 我能帮你：
@@ -40,7 +40,7 @@
             %a{ :href => user_path(help.user_id) }
               = image_tag help.user.avatar_url(:c), :size => '50x50'
             .message
-              - if help.user_id != current_user.id
+              - if logged_in? && help.user_id != current_user.id
                 = message_link_tag(help.user)
           .info
             %p
