@@ -33,7 +33,7 @@
             .ask_for_help
               - Assistance.includes(:user).limit(10).sample(5).each do |assistance|
                 .help_li
-                  .avatar{ :title => assistance.user.login }
+                  .avatar{ :title => assistance.user.login, :rel => 'tipsy' }
                     = image_tag assistance.user.avatar_url(:c), :size => '50x50'
                   .summary
                     .user_name
@@ -42,7 +42,7 @@
                       /   %i.icons.icons_person
                       /   帮她
                     .wants
-                      %a{ :href => assistance_path(assistance.id), :title => assistance.content }
+                      %a{ :href => assistance_path(assistance.id), :title => assistance.content, :rel => 'tipsy' }
                         = assistance.content.truncate(50)
 
           .talent
@@ -51,7 +51,7 @@
               %a.action 更多
             .talent_list
               - User.limit(30).sample(15).each do |user|
-                %a{ :href => user_path(user.id), :title => user.login }
+                %a{ :href => user_path(user.id), :title => user.login, :rel => 'tipsy' }
                   = image_tag user.avatar_url(:c), :size => '50x50'
 
 

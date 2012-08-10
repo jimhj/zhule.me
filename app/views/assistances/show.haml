@@ -43,7 +43,7 @@
     - else
       - @assist_helpers.each do |assist_helper|
         .helper_li
-          %a{ :href => user_path(assist_helper.user_id), :title => assist_helper.helpful ? "对#{@user.login}有帮助的" : assist_helper.user.login }
+          %a{ :href => user_path(assist_helper.user_id), :title => assist_helper.helpful ? "对#{@user.login}有帮助的" : assist_helper.user.login, :rel => 'tipsy' }
             = image_tag assist_helper.user.avatar_url(:c), :size => '50x50'
           - if assist_helper.helpful
             %i.icons.icons_smile

@@ -71,6 +71,10 @@ class User
     self.user_follows.find_by(:follower_id => user_id).present?
   end
 
+  def helpful_count
+    self.assistance_helpers.where(:helpful => true).count
+  end
+
   def read_notifications(notifications)
     unread_ids = notifications.find_all{ |notification| !notification.readed? }.map(&:_id)
     if unread_ids.any?

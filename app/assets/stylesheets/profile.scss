@@ -72,8 +72,12 @@ html { @include body_bg; }
 
     .achievement {
       @include margin(10px);
-      line-height: 16px;
-      a { @include margin(10px, right);  @include font(12px, #3E8BD9); font-weight: bold; } 
+      line-height: 14px;
+      a { @include font(14px); @include background(3px, #FFF); margin: 0px 3px; padding: 2px 4px; }
+      // a { @include margin(10px, right);  @include font(12px); }
+      a span {
+        @include font(16px, #3E8BD9);
+      } 
     }
   }
   .actions {

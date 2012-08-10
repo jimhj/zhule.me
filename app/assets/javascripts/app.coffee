@@ -2,6 +2,7 @@
 #= require jquery_ujs
 #= require lib/artdialog/artDialog
 #= require lib/artdialog/plugins/iframeTools
+#= require lib/jquery.tipsy 
 #= require lib/jquery.timeago
 #= require lib/jquery.timeago.zh-CN
 #= require lib/jquery.form
@@ -15,7 +16,13 @@ Zhule.CommonEvents =
     this.__bindJqueryTimeago()
     this.__toggleDropDown()
     this.__followUser()
+    this.__bindJqueryTipsy()
     # this.__showMessengerBtn()
+
+  __bindJqueryTipsy : ->
+    $('a[rel=tipsy]').tipsy 
+      fade: false, 
+      gravity: 's'
 
   __bindJqueryTimeago : ->
     $('abbr.timeago').timeago()

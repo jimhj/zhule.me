@@ -23,10 +23,10 @@
             %abbr.timeago{ :title => message.created_at }
           .avatar
             - if current_user.id == message.sender_id
-              %a{ :href => user_path(current_user.id), :title => current_user.login }
+              %a{ :href => user_path(current_user.id), :title => '我', :rel => 'tipsy' }
                 = image_tag current_user.avatar.url(:s), :size => '30x30'
             - else
-              %a{ :href => user_path( @dialog.from_user_id), :title => @dialog.from_user.login }
+              %a{ :href => user_path( @dialog.from_user_id), :title => @dialog.from_user.login, :rel => 'tipsy' }
                 = image_tag @dialog.from_user.avatar.url(:s), :size => '30x30'
           .content
             %p

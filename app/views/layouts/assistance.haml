@@ -50,7 +50,7 @@
                       /   %i.icons.icons_person
                       /   帮她
                     .wants
-                      %a{ :href => assistance_path(assistance.id), :title => assistance.content }
+                      %a{ :href => assistance_path(assistance.id), :title => assistance.content, :rel => 'tipsy' }
                         = assistance.content.truncate(50)
 
                     

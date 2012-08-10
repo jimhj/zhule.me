@@ -16,18 +16,18 @@
         %span= @user.tagline
       %p
         主页：
-        %a{ :href => '#' } http://www.123.com
+        - if false
+          %a{ :href => '#' } http://www.123.com          
     .achievement
-      / %a{ :href => url_for(:type => 'helpeds') }
-      /   帮助过
-      /   = @user.helped_stuffs_count
-      / %a{ :href => url_for }
-      /   求助过
-      /   = @user.assistances_count
-      / %a{ :href => '#' }
-      /   未解决
-      /   %em.num.red 112
-
+      %a{ :href => url_for(:type => 'helpeds') }
+        帮助过
+        %span= @user.helped_stuffs_count
+      %a{ :href => url_for }
+        求助过
+        %span= @user.assistances_count
+      %a{ :title => '成功帮助了1002人', :rel => 'tipsy' }
+        %i.icons.icons_smile
+        %span= @user.helpful_count
   .actions
     - if current_user != @user
       %a.button.followBtn{ :href => 'javascript:;', :class => current_user.followed?(@user.id) ? 'gray' : '', 'data-user_id' => @user.id }= current_user.followed?(@user.id) ? '已关注' : '+ 加关注'

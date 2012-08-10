@@ -143,13 +143,13 @@ html { @include body_bg; }
     @include zoom;
     padding: 5px 8px;
     .helper_li { 
-      float: left; position: relative;
-      a { padding: 5px 11px; }
+      position: relative;
+      a { padding: 5px 11px; float: left;  }
       i.icons.icons_smile {
         display: block;
         position: absolute;
         z-index: 1000;
-        top: 33px;
+        top: 38px;
         left: 45px;
       }
     }

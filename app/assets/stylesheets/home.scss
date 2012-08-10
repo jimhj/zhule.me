@@ -171,13 +171,13 @@ html { @include body_bg; }
         }
       }
       .mode.left_mode {
-        .avatar { float: left; }
+        .avatar { float: left; a { float: left; } }
         .content { 
           float: left; margin-left: 5px; @include background(3px, #FFFCE9);
        }
       }
       .mode.right_mode {
-        .avatar { float: right; }
+        .avatar { float: right; a { float: right; } }
         .content { 
           float: right; margin-right: 5px; @include background(3px, #E6F2FA); 
         }        
