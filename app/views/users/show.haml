@@ -25,7 +25,7 @@
       %a{ :href => url_for }
         求助过
         %span= @user.assistances_count
-      %a{ :title => '成功帮助了1002人', :rel => 'tipsy' }
+      %a{ :title => "成功帮助了#{@user.helpful_count}人", :rel => 'tipsy' }
         %i.icons.icons_smile
         %span= @user.helpful_count
   .actions
