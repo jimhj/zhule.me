@@ -6,7 +6,8 @@ html {
 
 .main-container {
   margin: 30px auto 10px auto;
-  width: 75%;
+  // width: 75%;
+  width: 960px;
   height: auto;
   @include zoom;
   .container {

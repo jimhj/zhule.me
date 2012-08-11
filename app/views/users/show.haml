@@ -47,7 +47,7 @@
           .detail
             .avatar
               %a
-                = image_tag assistance.user.avatar_url(:m), :size => '80x80'
+                = image_tag assistance.user.avatar_url(:c), :size => '50x50'
               .action
                 - if logged_in? && current_user != assistance.user
                   = message_link_tag(assistance.user) 

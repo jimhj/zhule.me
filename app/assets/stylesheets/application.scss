@@ -125,10 +125,11 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
          padding: 10px 0px 0px 0px;
         .avatar { 
           float: left;
-          width: 16%;
+          // width: 16%;
           .action {
             // text-align: center;
-            padding-left: 10px;
+            // padding-left: 10px;
+            line-height:12px;
             a { @include font(12px); }
             i.icons { vertical-align: middle; }
           }
@@ -136,7 +137,9 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
         }
         .content {
           float: left;
-          width: 82%;
+          // float: right;
+          width: 88%;
+          margin-left: 10px;
           a.user_name { @include font(12px, #3B5998); font-weight: bold; }
           .pics { margin-top: 10px; margin-left: 10px; }
         }
