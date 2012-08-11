@@ -86,9 +86,7 @@ Zhule.Assistance =
 
     $('.pics').on 'click', 'img', ->
       $this = $(this)
-      # $showImgPanel = $this.parent()
       if $this.is('.small')
-        # $this.removeClass('small')
         $this.hide().after($loading)
         img = new Image()
         img.src = $this.data('large_url')
