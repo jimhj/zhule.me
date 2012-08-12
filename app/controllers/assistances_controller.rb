@@ -9,6 +9,7 @@ class AssistancesController < ApplicationController
   def show
     @assist = Assistance.where(:_id => params[:id]).first
     @user = @assist.user
+    set_seo_meta(@assist.content.truncate(50), nil, @assist.content)
     @assist_helpers = @assist.assistance_helpers.includes(:user).limit(20)
     @comments = @assist.comments.includes(:user).paginate(:page => params[:page], :per_page => 20)
   end
@@ -45,6 +46,7 @@ class AssistancesController < ApplicationController
 
   def joined
     @assist = Assistance.where(:_id => params[:id]).first
+    set_seo_meta(@assist.content.truncate(30), nil, @assist.content.truncate(30))
     @user = @assist.user
     @helpers = @assist.assistance_helpers.includes(:user)
   end

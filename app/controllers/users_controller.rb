@@ -15,6 +15,7 @@ class UsersController < ApplicationController
       @assistances = Assistance.where(:_id.in => assistance_ids).includes(:user)
     end
     @assistances = @assistances.paginate(:page => params[:page], :per_page => 8)
+    set_seo_meta("#{@user.login}的主页")
   end
 
   def follow

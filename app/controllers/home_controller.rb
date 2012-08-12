@@ -19,6 +19,7 @@ class HomeController < ApplicationController
       @assistances = Assistance.desc('created_at')
     end
     @assistances = @assistances.includes(:user).paginate(:page => params[:page], :per_page => 8)
+    set_seo_meta("#{@user.login}")
   end
   
 end

@@ -5,6 +5,7 @@ class DialogsController < ApplicationController
 
   def index
     @dialogs = Dialog.where(:to_user_id => current_user.id).includes(:from_user)
+    set_seo_meta("#{current_user.login} - 私信")
   end
 
   def show
@@ -14,6 +15,7 @@ class DialogsController < ApplicationController
     end
     @messages = @dialog.messages.includes(:from_user).paginate(:page => params[:page], :per_page => 10)
     current_user.read_messages(@dialog, @messages)
+    set_seo_meta("#{current_user.login} - 私信")
   end
 
 
