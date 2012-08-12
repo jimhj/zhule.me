@@ -16,6 +16,7 @@ class IndexController < ApplicationController
       end
       redirect_to :back
     end
+    set_seo_meta
   end
 
   def sign_up
@@ -29,6 +30,7 @@ class IndexController < ApplicationController
       end
       redirect_to :back
     end
+    set_seo_meta
   end
 
   def sign_out
