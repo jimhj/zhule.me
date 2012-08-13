@@ -6,8 +6,12 @@
 #= require lib/jquery.timeago
 #= require lib/jquery.timeago.zh-CN
 #= require lib/jquery.form
+#= require_self
+#= require assist_popup
+
 
 Zhule = window.Zhule = {}
+
 Zhule.tips = (msg) ->
   art.dialog.tips("<span style='color: #999;font-size: 12px;'>#{msg}</span>")
 

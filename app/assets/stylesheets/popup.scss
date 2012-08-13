@@ -7,3 +7,38 @@
   .notify { @include font(12px, #333); margin: 0px 0px 5px 0px; }
   .notify span { font-weight: bold; }
 }
+
+// newAssistanceForm
+.newAssistanceForm {
+  @include font(14px);
+  a { @include font(14px, #3E8BD9); }
+  .f_attachment { 
+    margin-top: 10px;
+    // padding-bottom: 10px;
+    border-bottom: 1px solid #EEE; 
+  }
+
+  .f_upload_notify {
+    padding-bottom: 10px;
+  }
+
+  .f_upload_panel {
+    border-top: 1px solid #EEE; 
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: none;
+  }
+
+  .f_addr, .f_tags {
+    margin-top: 10px;
+    p { margin-bottom: 10px;}
+    // line-height: 20px;
+  }
+
+  .f_addr p span { float:left; padding-top: 10px; margin-right: 10px; }
+  .f_addr input { width: 100px; }
+  .f_buttons {
+    a { margin-right: 5px; }
+  }
+
+}

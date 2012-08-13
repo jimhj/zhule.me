@@ -12,7 +12,6 @@
             = image_tag current_user.avatar_url(:s), :size => '15x15'
             = current_user.login
         .options
-          / %a.button.green.submit{ :href => 'javascript:;' } + 发布求助
           %a.newAssistance{ :href => 'javascript:;' } 发布求助            
         .options
           - total_count = current_user.unread_notifications_count + current_user.messages_count

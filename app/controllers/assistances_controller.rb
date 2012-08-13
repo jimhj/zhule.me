@@ -3,7 +3,15 @@ class AssistancesController < ApplicationController
   layout 'assistance'
   before_filter :require_login, :except => [:show, :joined]
 
-  def index
+  def new
+    @user = current_user
+    render :template => 'assistances/new_assistance_form', :layout => false
+    # respond_to do |format|
+    #   format.html { redirect_to home_path }
+    #   format.js {
+    #     render :template => 'assistances/new_assistance_form'
+    #   }
+    # end
   end
 
   def show
