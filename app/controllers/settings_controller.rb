@@ -2,9 +2,9 @@
 class SettingsController < ApplicationController
   layout 'setting'
   before_filter :require_login
+  before_filter :set_meta_tag
 
   def index
-    set_seo_meta("#{current_user.login}-设置")
     if request.post?
       current_user.login = params[:login]
       current_user.address = params[:address]
@@ -21,7 +21,6 @@ class SettingsController < ApplicationController
   end
 
   def password
-    set_seo_meta("#{current_user.login}-设置")
     if request.post?
       if current_user.password == params[:current_password]
         current_user.password = params[:new_password]
@@ -39,7 +38,6 @@ class SettingsController < ApplicationController
   end
 
   def avatar
-    set_seo_meta("#{current_user.login}-设置")
     if request.post?
       redirect_to :back and return if params[:avatar].blank?
       current_user.avatar = params[:avatar]
@@ -56,7 +54,6 @@ class SettingsController < ApplicationController
   end
 
   def crop_avatar
-    set_seo_meta("#{current_user.login}-设置")
     if request.post?
       begin
         current_avatar_path = File.join(Rails.root, 'public', params[:last_upload_avatar])
@@ -73,5 +70,10 @@ class SettingsController < ApplicationController
     end
   end
 
+  private 
+
+  def set_meta_tag
+    set_seo_meta("#{current_user.login}-设置")
+  end
 
 end
