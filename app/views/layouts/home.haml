@@ -29,17 +29,17 @@
               %span
                 帮助过：
               %a{ :href => home_path(:type => 'helped') }
-                = current_user.helped_stuffs_count
+                %span.round= current_user.helped_stuffs_count
             %p
               %span
                 求助过：
               %a{ :href => home_path(:type => 'assistances') }
-                = current_user.assistances_count
+                %span.round= current_user.assistances_count
             %p
               %span
                 关注的用户数：
               %a{ :href => home_path(:type => 'followed') }
-                = current_user.followers_count
+                %span.round= current_user.followers_count
 
           .latest
             .title

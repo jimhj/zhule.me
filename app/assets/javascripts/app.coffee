@@ -30,7 +30,7 @@ Zhule.CommonEvents =
   __toggleDropDown : ->
     $('.site-header .logged-in .options').mouseenter ->
       $this = $(this)
-      $this.addClass('active')
+      $this.addClass('active') unless $this.is('.without_hover')
       $this.find('.dropdown-list').show()
     .mouseleave ->
       $this = $(this)

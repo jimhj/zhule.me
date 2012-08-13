@@ -24,12 +24,15 @@
             .avatar
               %a{ :href => user_path(@user.id) }
                 = image_tag @user.avatar_url(:m), :size => '80x80'
-              .message
-                - if current_user != @user
-                  = message_link_tag(@user)
+
+              / .message
+              /   - if current_user != @user
+              /     = message_link_tag(@user)
             .info
               .user_name
                 %a{ :href => user_path(@user.id) }= @user.login
+                - if current_user != @user
+                  = message_link_tag(@user)                   
               .address
                 = @user.address
               .signature

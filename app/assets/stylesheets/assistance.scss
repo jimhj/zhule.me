@@ -39,7 +39,7 @@ html { @include body_bg; }
           float: left;
           margin-left: 10px;
           width: 68%;
-          .user_name a { @include font(14px, #3B5998); font-weight: bold; }
+          .user_name a { @include font(12px, #3B5998); font-weight: bold; line-height: 12px;}
         }
       }       
     }

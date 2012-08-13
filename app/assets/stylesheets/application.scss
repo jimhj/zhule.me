@@ -121,13 +121,13 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
       padding: 0px 10px 5px 10px;
       border: 1px solid #EFF6FC;
       .detail { 
-        line-height: 22px;
+        line-height: 18px;
          padding: 10px 0px 0px 0px;
         .avatar { 
           float: left;
           // width: 16%;
           .action {
-            // text-align: center;
+            text-align: center;
             // padding-left: 10px;
             line-height:12px;
             a { @include font(12px); }

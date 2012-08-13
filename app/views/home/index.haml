@@ -1,31 +1,35 @@
 .user_home
-  .new_help_form
-    .notice
-      有困难，要帮忙？勇敢的写吧！
-    .form_panel#newAssistance
-      %textarea.form_text{ :name => 'content', 'data-attachment_id' => '' }
-      .bottom_tools
-        .option
-          %a.location{ :href => 'javascript:;' }
-            %i.icons.icons_c_map
-            %span 地点
-        .option     
-          %a.uploadImage{ :href => 'javascript:;' }
-            %i.icons.icons_img
-            %span 上传图片                  
-      %a.button.green.submit{ :href => 'javascript:;' } 发布求助
+  / .new_help_form
+  /   .notice
+  /     有困难，要帮忙？勇敢的写吧！
+  /   .form_panel#newAssistance
+  /     %textarea.form_text{ :name => 'content', 'data-attachment_id' => '' }
+  /     .bottom_tools
+  /       .option
+  /         %a.location{ :href => 'javascript:;' }
+  /           %i.icons.icons_c_map
+  /           %span 地点
+  /       .option     
+  /         %a.uploadImage{ :href => 'javascript:;' }
+  /           %i.icons.icons_img
+  /           %span 上传图片                  
+  /     %a.button.green.submit{ :href => 'javascript:;' } 发布求助
 
-  .attachment_panel.address
-    %input.text{ :type => 'text' }
-    %a.button.submit{ :href => 'javascript:;' } 确定
-    %a.button.gray{ :href => 'javascript:;' } 取消
+  / .attachment_panel.address
+  /   %input.text{ :type => 'text' }
+  /   %a.button.submit{ :href => 'javascript:;' } 确定
+  /   %a.button.gray{ :href => 'javascript:;' } 取消
 
-  .attachment_panel.photo
-    = form_tag upload_photo_assistances_path, :multipart => true do
-      %input{ :type => 'file', :name => 'photo' }
-      %a.button.submit{ :href => 'javascript:;' } 确定
-      %a.button.gray{ :href => 'javascript:;' } 取消
-
+  / .attachment_panel.photo
+  /   = form_tag upload_photo_assistances_path, :multipart => true do
+  /     %input{ :type => 'file', :name => 'photo' }
+  /     %a.button.submit{ :href => 'javascript:;' } 确定
+  /     %a.button.gray{ :href => 'javascript:;' } 取消
+  .assistance_count
+    %p
+      一共有 
+      %span.round= 346 
+      个人在等待你的帮助...
   .user_zl_list
     .zl_nav
       %a{ :href => url_for(:type => 'all'), :class => params[:type] == 'all' ? 'current' : '' }
@@ -48,9 +52,9 @@
                 %a{ :href => user_path(assistance.user) }
                   = image_tag assistance.user.avatar_url(:c), :size => '50x50'
                 .action
-                  - if current_user != assistance.user
-                    = message_link_tag(assistance.user) 
               .content
+                - if current_user != assistance.user
+                  = message_link_tag(assistance.user)               
                 %a.user_name{ :href => user_path(assistance.user) }= "#{assistance.user.login}:"
                 = assistance.content
                 .pics

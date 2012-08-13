@@ -74,6 +74,17 @@ html { @include body_bg; }
   input { margin-top: 15px; }
 }
 
+.user_zl_list {
+  // margin-top: 0px;
+}
+
+.assistance_count {
+  @include background(5px);
+  @include font(14px);
+  line-height: 22px;
+  padding: 5px 15px;
+}
+
 /* User Notifications */
 
 .user_notifications {

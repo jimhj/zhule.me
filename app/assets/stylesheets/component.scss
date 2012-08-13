@@ -81,6 +81,18 @@ em.num.red {
   background: none repeat scroll 0 0 #FF0000;
 }
 
+// Round span
+
+span.round {
+  background: none repeat scroll 0 0 #1E95E5;
+  color: #FFFFFF;
+  font-size: 11px;
+  margin: 0 0 0 3px;
+  padding: 1px 5px;
+  vertical-align: top;
+  border-radius: 30px 30px 30px 30px;  
+}
+
 // Text Input
 input.text {
   background: none repeat scroll 0 0 #E8F4FC;
