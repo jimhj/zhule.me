@@ -1,6 +1,6 @@
 Zhule.Home = 
   init : ->
-    this.Assistance.init()
+    # this.Assistance.init()
     this.Message.init()
 
 Zhule.Home.Assistance =  

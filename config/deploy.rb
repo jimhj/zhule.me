@@ -43,12 +43,18 @@ task :mongoid_create_indexes, :roles => :web do
   run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake db:mongoid:create_indexes"
 end
 
+task :resprite, :roles => :web do
+  run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake assets:resprite"
+end
+
 task :compile_assets, :roles => :web do
   run "cd #{deploy_to}/current/; RAILS_ENV=production bundle exec rake assets:precompile"
 end
+
+
 
 # task :rm_production_log, :roles => :web do
 #   run "cd #{deploy_to}/current/log; #{try_sudo} rm -rf production.log"
 # end
 
-after "deploy:finalize_update","deploy:create_symlink", :compile_assets
+after "deploy:finalize_update","deploy:create_symlink", :resprite, :compile_assets

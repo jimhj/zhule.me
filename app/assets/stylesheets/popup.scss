@@ -27,6 +27,9 @@
     padding-top: 10px;
     padding-bottom: 10px;
     display: none;
+    a.button { margin-right: 5px; }
+    span { @include font(12px); }
+    form { @include zoom; }
   }
 
   .f_addr, .f_tags {

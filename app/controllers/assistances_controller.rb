@@ -2,6 +2,7 @@
 class AssistancesController < ApplicationController
   layout 'assistance'
   before_filter :require_login, :except => [:show, :joined]
+  skip_before_filter :verify_authenticity_token, :only => :upload_photo
 
   def new
     @user = current_user
@@ -31,7 +32,7 @@ class AssistancesController < ApplicationController
         attachment.update_attributes(:attachmentable_type => 'Assistance', :attachmentable_id => assist.id)
       end
       respond_to do |format|
-        format.js { render :text => { :success => assist.save }.to_json }
+        format.js { render :text => { :success => assist.save, :id => assist._id }.to_json }
       end
     rescue
       render :text => { :success => false }.to_json
