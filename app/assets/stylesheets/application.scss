@@ -40,7 +40,7 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
       padding: 1px 3px;
       @include font(14px, #FF81B2);
       @include background(4px, #FFEFF3);
-      border: 1px solid #FF0000;
+      border: 1px solid #FF81B2;
     }
     a, span { color: #FFFFFF; }
     span.site_name { @include font(30px, #FFFFFF); }
