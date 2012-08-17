@@ -16,6 +16,7 @@ input, button, textarea, p, blockquote, th, td {
   margin:0; padding:0;
 }
 
+
 ul, ol, dl { list-style: none outside none; }
 
 body {
@@ -24,6 +25,25 @@ body {
 }
 a { text-decoration: none;  }
 img { border: none; }
+
+// clearfix
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {}
+.clear {
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+
 i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
 
 .site-header {

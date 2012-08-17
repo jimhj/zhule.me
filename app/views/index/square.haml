@@ -1,0 +1,24 @@
+- content_for :header_css do
+  = stylesheet_link_tag 'square'
+
+.container
+  .square_waterfall.clearfix
+    .result_col
+      - 6.times do
+        .col
+    .result_col
+      - 5.times do
+        .col.long
+    .result_col
+      .col
+        .pd
+          .detail
+            %p
+              adasdasdasd
+            .picture
+          .tools
+            %a.button{ :href => 'javascript:;' } 帮TA
+          .user
+
+    .result_col.adjust
+      .col                  

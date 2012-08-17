@@ -1,8 +1,8 @@
 # coding: utf-8
 class IndexController < ApplicationController
   layout 'public'
-  before_filter :check_logged_in, :except => :sign_out
-  before_filter :require_login, :only => :sign_out
+  before_filter :check_logged_in, :except => [:sign_out, :square]
+  before_filter :require_login, :only => [:sign_out]
 
   def index
     @assistances = Assistance.includes(:user).desc('created_at').limit(6).sample(3)
@@ -36,7 +36,10 @@ class IndexController < ApplicationController
   def sign_out
     clear_login_state
     redirect_to root_path
-  end  
+  end
+
+  def square
+  end
 
   private
 

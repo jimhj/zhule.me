@@ -1,0 +1,41 @@
+@import 'base';
+
+.square_waterfall {
+  .result_col {
+    float: left;
+    margin-right: 10px;
+    width: 230px;
+
+    .pd {
+      padding: 16px 14px 20px;
+      width: 230px;
+    }
+
+    .col {
+      @include background(0px);
+      @include font(12px);
+      border: 1px solid #EEE;
+      width: 230px;
+      height: 120px;
+      margin-bottom: 13px;
+      padding-bottom: 7px;
+      -moz-box-shadow: 10px 10px 5px #888;
+      -webkit-box-shadow: 10px 10px 5px #888;
+      box-shadow: 10px 10px 5px #888;
+    }
+
+    .col:hover {
+      border-top: 1px solid #999;
+    }
+
+    .col.long {
+      height: 300px;
+    }
+    
+  }
+
+  .result_col.adjust {
+    margin-right: 0px;
+  }
+
+}
