@@ -38,7 +38,7 @@ Zhule.AssistPopup =
     .on 'change', 'input:file', ->
       $this = $(this)
       if $this.val()?
-        $this.parents('form').ajaxSubmit(
+        $this.parents('.f_upload_panel').find('form').ajaxSubmit(
           dataType: 'json'
           beforeSend: ->
             $this.after('<span>正在上传...</span>') 
