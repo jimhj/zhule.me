@@ -16,6 +16,7 @@ input, button, textarea, p, blockquote, th, td {
   margin:0; padding:0;
 }
 
+
 ul, ol, dl { list-style: none outside none; }
 
 body {
@@ -24,6 +25,25 @@ body {
 }
 a { text-decoration: none;  }
 img { border: none; }
+
+// clearfix
+.clearfix:before, .clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+.clearfix {}
+.clear {
+  clear: both;
+  display: block;
+  height: 0;
+  overflow: hidden;
+  visibility: hidden;
+  width: 0;
+}
+
 i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
 
 .site-header {
@@ -35,6 +55,14 @@ i.icons { display: inline-block; vertical-align: bottom; margin-right: 2px; }
   padding: 10px 155px 0px 155px;
   .logo {
     float: left;
+    a { margin-right: 10px; }
+    a.round_bg {
+      padding: 1px 3px;
+      @include font(14px, #FF81B2);
+      @include background(4px, #FFEFF3);
+      border: 1px solid #FF81B2;
+    }
+    a, span { color: #FFFFFF; }
     span.site_name { @include font(30px, #FFFFFF); }
     span.slogan { 
       @include font(12px, #FFFFFF); 

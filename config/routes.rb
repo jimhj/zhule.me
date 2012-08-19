@@ -4,6 +4,13 @@ Zhule::Application.routes.draw do
   match 'sign_in' => 'index#index', :as => :sign_in
   match 'sign_up' => 'index#sign_up', :as => :sign_up, :via => [:get, :post]
   match 'sign_out' => 'index#sign_out', :as => :sign_out
+
+  scope 'square' do
+    match '/' => 'index#square', :as => :square
+    match 'load_square_columns' => 'index#load_square_columns', :via => :get
+  end
+  
+  # match 'square' => 'index#square', :as => :square
   match 'home' => 'home#index', :as => :home
 
   resources :users do
