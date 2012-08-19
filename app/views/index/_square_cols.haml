@@ -1,0 +1,21 @@
+- assistances.each do |assist|
+  .col
+    .pd
+      .detail
+        - unless assist.attachments.blank?
+          .picture
+            = image_tag assist.attachments.first.photo_url(:m)
+        %p
+          = assist.content
+        .persons
+          %a{ :href => assistance_path(assist.id) }
+            = "#{assist.helpers_count} 人帮TA"            
+    .user
+      .avatar
+        %a{ :href => user_path(assist.user_id), :rel => 'tipsy', :title => assist.user.login }
+          = image_tag assist.user.avatar_url(:s)
+      .remarks
+        %a{ :href => user_path(assist.user_id), :rel => 'tipsy', :title => assist.user.login  }= assist.user.login
+        在
+        %abbr.timeago{ :title => assist.created_at }
+        发起

@@ -1,7 +1,7 @@
 # coding: utf-8
 class IndexController < ApplicationController
   layout 'public'
-  before_filter :check_logged_in, :except => [:sign_out, :square]
+  before_filter :check_logged_in, :except => [:sign_out, :square, :load_square_columns]
   before_filter :require_login, :only => [:sign_out]
 
   def index
@@ -39,6 +39,12 @@ class IndexController < ApplicationController
   end
 
   def square
+  end
+
+  def load_square_columns
+    @assistances = Assistance.includes(:user,:attachments).desc('created_at').limit(40)
+    cols_str = render_to_string(:partial => 'index/square_cols', :locals => { :assistances => @assistances })
+    render :text => { :html_str => cols_str }.to_json    
   end
 
   private
