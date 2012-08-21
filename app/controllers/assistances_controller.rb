@@ -62,6 +62,7 @@ class AssistancesController < ApplicationController
 
   def join
     assistance_helper = current_user.assistance_helpers.build(:assistance_id => params[:id], :content => params[:content])
+    expire_fragment('newest_helps')
     respond_to do |format|
       format.js { render :text => { :success => assistance_helper.save }.to_json }
     end

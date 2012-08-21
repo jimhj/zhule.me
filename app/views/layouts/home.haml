@@ -46,14 +46,15 @@
               正在发生的
               %a.action 更多
             .help_list
-              - AssistanceHelper.limit(15).includes(:user, :assistance).sample(10).each do |assistance_helper|
-                .help_li
-                  %a.user_name{ :href => user_path(assistance_helper.user.id), :title => assistance_helper.user.login, :rel => 'tipsy' }= assistance_helper.user.login
-                  帮助了
-                  %a.user_name{ :href => user_path(assistance_helper.assistance.user_id), :title => assistance_helper.assistance.user.login, :rel => 'tipsy' }= assistance_helper.assistance.user.login
-                  的
-                  %a{ :href => assistance_path(assistance_helper.assistance_id), :title => assistance_helper.assistance.content, :rel => 'tipsy' }
-                    = assistance_helper.assistance.content.truncate(13)
+              - cache('newest_helps') do
+                - AssistanceHelper.limit(15).includes(:user, :assistance).desc('created_at').each do |assistance_helper|
+                  .help_li
+                    %a.user_name{ :href => user_path(assistance_helper.user.id), :title => assistance_helper.user.login, :rel => 'tipsy' }= assistance_helper.user.login
+                    帮助了
+                    %a.user_name{ :href => user_path(assistance_helper.assistance.user_id), :title => assistance_helper.assistance.user.login, :rel => 'tipsy' }= assistance_helper.assistance.user.login
+                    的
+                    %a{ :href => assistance_path(assistance_helper.assistance_id), :title => assistance_helper.assistance.content, :rel => 'tipsy' }
+                      = assistance_helper.assistance.content.truncate(13)
           .talent
             .title
               热心达人
