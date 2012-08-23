@@ -1,14 +1,13 @@
 # coding: utf-8
-require 'bcrypt'
+# require 'bcrypt'
 
 class User
   include Mongoid::Document
   include Mongoid::Timestamps
-  include BCrypt
+  include Mongoid::SecurePassword
 
   field :email, :type => String, :default => ''
   field :login, :type => String, :default => ''
-  field :password_digest, :type => String
   field :avatar, :type => String, :default => ''
   field :address, :type => String, :default => ''
   field :last_logged_at, :type => Time
@@ -42,10 +41,9 @@ class User
   validates :login, :presence => true, :length => { :minimum => 2, :maximum => 20 }
 
   validates_length_of :tagline, :maximum => 100
-  validates_presence_of :password
-  validates_confirmation_of :password
 
-  attr_accessible :email, :login, :password, :password_confirmation, :weibo_uid, :weibo_token
+  attr_accessible :email, :login, :weibo_uid, :weibo_token
+
   attr_accessible :avatar, :avatar_cache
   mount_uploader :avatar, AvatarUploader
 
@@ -55,17 +53,6 @@ class User
 
   def tag_list
     self.tags.join(",")
-  end
-
-  def password
-    if password_digest.present?
-      @password ||= Password.new(password_digest)
-    end
-  end
-
-  def password=(new_password)
-    @password = Password.create(new_password)
-    self.password_digest = @password    
   end
 
   def helped?(assist_id)

@@ -88,6 +88,9 @@ GEM
       moped (~> 1.1.1)
       origin (~> 1.0.3)
       tzinfo (~> 0.3.22)
+    mongoid_secure_password (0.0.1)
+      bcrypt-ruby (~> 3.0.0)
+      mongoid (~> 3.0.0)
     moped (1.1.1)
     multi_json (1.3.6)
     multipart-post (1.1.5)
@@ -184,6 +187,7 @@ DEPENDENCIES
   mini_magick (= 3.4)
   mongoid (~> 3.0.0)
   mongoid_colored_logger!
+  mongoid_secure_password
   multi_json
   omniauth (~> 1.1.0)
   omniauth-oauth2 (~> 1.0.2)

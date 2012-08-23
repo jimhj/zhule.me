@@ -9,6 +9,8 @@ gem "mongoid_colored_logger", :git => "git://github.com/huacnlee/mongoid_colored
 
 gem 'bcrypt-ruby', '~> 3.0.0'
 
+gem 'mongoid_secure_password'
+
 # Template
 gem 'haml'
 
