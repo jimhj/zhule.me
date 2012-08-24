@@ -9,6 +9,7 @@
     = csrf_meta_tags
     %meta{ :name => 'keywords', :content => @keywords }
     %meta{ :name => 'description', :content => @description }
+    = yield :meta
     %link{ :href => image_path('favicon.ico'), :rel => 'shortcut icon', :type => 'image/vnd.microsoft.icon' }
     /Le HTML5 shim, for IE6-8 support of HTML5 elements
     /[if IE 9]
